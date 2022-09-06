@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Touchdown</title> 
+
+	<script type="text/javascript" src="main.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+	<link rel="stylesheet" href="style-design.css">
+
+</head>
+
+<body>
+	<div class="loading-screen" id="loading-screen">
+		<div class="loading-header">
+			<span id="loading-header-text">Touchdown</span>
+		</div>
+		<div class="lds-hourglass"></div>
+
+		<div class="loading-footer">
+			<span id="loading-footer-text">Loading resources</span> <span id="loading-footer-dots">. . .</span>
+		</div>
+	</div>
+
+	<div class="info-modal" id="info-modal" style="display: none">
+		<div class="info-modal-content">
+			<header><div class="close">&times;</div></header>
+			
+		
+			<div class="info-modal-text">
+				Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. 
+			</div>
+
+		</div>
+	</div>
+
+	<div class="header">
+		<div>
+			<svg id="info-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
+			</svg>
+		</div>
+
+		<script type="text/javascript">
+			var modal = document.getElementById("info-modal");
+			var btn = document.getElementById("info-icon");
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			  modal.style.display = "block";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+			    modal.style.display = "none";
+			  }
+			}
+		</script>
+
+		<div>
+			<span id="headline">Touchdown</span>
+		</div>
+		<div></div>
+	</div>
+
+	<div class="main">
+		<div class="game-prompt">
+			<span>Connect <span id="start-player">Start Player</span> to <span id="end-player"> End Player</span></span>.
+		</div>
+
+		<div class="game-table">
+			<div id="start-pt">
+				<div class="cell" id="p-start">Person Start</div>
+			</div>
+
+			<div id="guess-pt">
+			</div>
+
+			<div id="next-pt">	
+				<div class="cell" id="ui" contenteditable="true" data-text="Enter player name here" data-gramm="false" data-gramm_editor="false"data-enable-grammarly="false"></div>
+
+	
+			</div>
+ 
+			<div id="end-pt">
+				<tr>
+					<td><div class="cell" id="p-end">Person End</div></td>
+				</tr>
+			</div>
+		</div>
+
+
+	</div>
+</body>
+
+</html>
