@@ -35,6 +35,8 @@ def teammate_bfs_all(graph, start, goal):
 					#return new_path
 			
 			explored.append(node)
+			print(len(queue))
+			print(len(explored))
 
 
 	return to_ret
@@ -57,6 +59,7 @@ def teammate_bfs(graph, start, goal, pop_only=False):
 		 
 		if node not in explored:
 			neighbours = graph[node]
+			print(neighbours);
 			for neighbour in neighbours:
 				new_path = list(path)
 				new_path.append(neighbour)

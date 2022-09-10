@@ -125,6 +125,42 @@ function get_share_text() {
 
     return share_str;
 }
+
+
+function bfs(){
+    var explored = [];
+    var queue = [[StartPlayer]];
+
+    var found = false;
+
+    if (StartPlayer === EndPlayer){
+        return [start];
+    }
+
+    while (queue) {
+        var path = queue.shift();
+        var node = path[path.length - 1];
+
+        if (!explored.includes(node)){
+            var adjs = PlayerTeammates[node];
+            for (adj_id in adjs) {
+                var adj = adjs[adj_id];
+                var new_path = [...path];
+                new_path.push(adj);
+                queue.push(new_path);
+
+                if (adj === EndPlayer) {
+                    return new_path
+                }
+            }
+
+            explored.push(node);
+        }
+    }
+
+    return null;
+}
+
 async function init() {
     window.localStorage.clear();
     await loadPlayerId();

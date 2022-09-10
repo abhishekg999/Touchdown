@@ -178,7 +178,7 @@ html, body {
 }
 
 
-.info-modal-header {
+.modal-header {
 	border-bottom: 1px solid grey;
 }
 
@@ -220,7 +220,7 @@ html, body {
   background-color: #a8bbbf;
 }
 
-.info-modal-content { 
+.modal-content { 
 	background-color: black;
 	margin: 0 auto;
 	padding: 20px;
@@ -235,17 +235,17 @@ html, body {
 	box-sizing: border-box;
 }
 
-.info-modal-text {
+.modal-text {
 	display: block;
 	font-family: 'Open Sans';font-size: 14px;
 	color: white;
 
 }
 
-.info-modal-text header {
+.modal-text header {
 	text-align: center;
 }
-.info-modal-text p {
+.modal-text p {
 	text-align: center;
 }
 
@@ -326,6 +326,8 @@ html, body {
 
 	overflow-x: hidden;
 	overflow-y: hidden;
+	white-space:nowrap;
+
 	background-color: #0f222e;
 	display: flex;
 	align-items: center;
