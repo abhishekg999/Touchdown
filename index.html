@@ -24,21 +24,58 @@
 		</div>
 	</div>
 
-	<div class="info-modal" id="info-modal" style="display: none">
-		<div class="info-modal-content">
-			<header><div class="close">&times;</div></header>
-			
-		
-			<div class="info-modal-text">
-				Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. Connect the starting player to the ending player through their mutual teammates. 
-			</div>
+	<div class="modal" id="info-modal">
+	    <div class="info-modal-content">
+			<header>
+				<div class="close">&times;</div>
+			</header>
 
-		</div>
+			<div class="info-modal-text">
+		      	<div class="info-modal-header">
+			        <header>HOW TO PLAY</header>
+			        <p>Connect two NFL players through 6 or fewer mutual teammates. </p>    		
+		      	</div>
+	       
+	        	<p>Example: Connect <bold>Drew Brees</bold> to <bold>Aaron Rodgers</bold></p>
+
+
+		        <div class="info-modal-sample">
+		          <div class="cell"> Drew Brees </div>
+		          <div class="cell correct"> Brandin Cooks </div>
+		          <div class="cell wrong"> Patrick Mahomes </div>
+		          <div class="cell correct"> Randall Cobb </div>
+		          <div class="cell"> Aaron Rodgers </div>
+		        </div>
+
+
+		        <div class="info-modal-guess-explanation">
+		        	<div class="info-modal-explanation-cell">
+		        		<span>Guess 1: <span class="correct">Brandin Cooks</span></span>
+		        		<div class="info-modal-explanation-reason">
+		        		Brandon Cooks played with Dree Bre, however, he's never played with Rodgers.		
+		        		</div>        		  
+		        	</div>
+
+		        	<div class="info-modal-explanation-cell">
+		        		<span>Guess 1: <span class="wrong">Patrick Mahomes</span></span>
+		        		<div class="info-modal-explanation-reason">
+		        		Patrick Mahomes never played with Brandon Cooks.
+		        		</div>	  
+		        	</div>
+		        	<div class="info-modal-explanation-cell">
+		        		<span>Guess 1: <span class="correct">Randall Cobb</span></span>
+		        		<div class="info-modal-explanation-reason">
+		        		Randall Cobb played with Brandin Cooks, and also played with Rodgers.  		
+		        		</div>	
+		        	</div>
+		        </div>
+	      	</div>
+	    </div>
 	</div>
 
 	<div class="header">
 		<div>
-			<svg id="info-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" class="bi bi-info-circle-fill" viewBox="0 0 16 16">
+			<svg id="info-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
 			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
 			</svg>
 		</div>
@@ -50,7 +87,7 @@
 
 			// When the user clicks the button, open the modal 
 			btn.onclick = function() {
-			  modal.style.display = "block";
+			  modal.style.display = "flex";
 			}
 
 			// When the user clicks on <span> (x), close the modal
@@ -69,12 +106,38 @@
 		<div>
 			<span id="headline">Touchdown</span>
 		</div>
-		<div></div>
+
+		<div>
+			<svg id="stats-icon" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="4 4 24 24" width="32" fill="currentColor"><path d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z"></path></svg>
+		</div>
+
+		<script type="text/javascript">
+			var modal = document.getElementById("info-modal");
+			var btn = document.getElementById("stats-icon");
+			var span = document.getElementsByClassName("close")[0];
+
+			// When the user clicks the button, open the modal 
+			btn.onclick = function() {
+			  modal.style.display = "flex";
+			}
+
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() {
+			  modal.style.display = "none";
+			}
+
+			// When the user clicks anywhere outside of the modal, close it
+			window.onclick = function(event) {
+			  if (event.target == modal) {
+			    modal.style.display = "none";
+			  }
+			}
+		</script>
 	</div>
 
 	<div class="main">
 		<div class="game-prompt">
-			<span>Connect <span id="start-player">Start Player</span> to <span id="end-player"> End Player</span></span>.
+			<span>Connect <span id="start-player">Start Player</span> to <span id="end-player">End Player</span> through mutual teammates.</span>
 		</div>
 
 		<div class="game-table">
@@ -86,9 +149,8 @@
 			</div>
 
 			<div id="next-pt">	
-				<div class="cell" id="ui" contenteditable="true" data-text="Enter player name here" data-gramm="false" data-gramm_editor="false"data-enable-grammarly="false"></div>
-
-	
+				<div class="cell" id="ui" contenteditable=true data-text="Enter player name here" data-gramm="false" data-gramm_editor="false"data-enable-grammarly="false"></div>
+				<div class="autocomplete-wrapper" id="autocomplete-wrapper"></div>
 			</div>
  
 			<div id="end-pt">
@@ -98,6 +160,13 @@
 			</div>
 		</div>
 
+		<div class="remaining-guesses" id="rem-guesses">
+			<span><span id="remaining-guess-cnt">6</span> guesses remaining</span>
+		</div>
+	</div>
+
+
+	<div class="footer">
 
 	</div>
 </body>
