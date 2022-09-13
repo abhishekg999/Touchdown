@@ -170,27 +170,24 @@ html, body {
 	height: 100%;
 
 	background-color: rgb(0,0,0); 
-  	background-color: rgba(0,0,0,0.6);
+	background-color: rgba(0,0,0,0.6);
 
-  	display: flex;
-  	justify-content: center;
-  	align-items: center;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-
-.modal-header {
-	border-bottom: 1px solid grey;
-}
 
 
 .close {
 	color: #aaaaaa;
-	float: right;
-	transform: translate(55%, -30%);
-
 	font-size: 34px;
 	font-weight: bold;
 	display: block;
+	position: absolute;
+
+	top: 15px;
+	right: 15px;
 }
 
 .close:hover,
@@ -220,30 +217,43 @@ html, body {
   background-color: #a8bbbf;
 }
 
+
+.modal-header {
+	border-bottom: 1px solid grey;
+	text-align: center;
+
+	padding-bottom: 12px;
+}
+
 .modal-content { 
 	background-color: black;
 	margin: 0 auto;
 	padding: 20px;
 	border: 1px solid #888;
-	width: 75%;
+	width: 85%;
 	display: block;
 
 	max-height: 100%;
-	max-width: 480px;
+	max-width: 512px;
 
 	overflow-y: scroll;
 	box-sizing: border-box;
+
+	position: relative;
 }
 
 .modal-text {
 	display: block;
-	font-family: 'Open Sans';font-size: 14px;
+	font-family: 'Open Sans';font-size: 12px;
 	color: white;
 
 }
 
 .modal-text header {
 	text-align: center;
+	font-size: 24px;
+	padding-bottom: 15px;
+	font-weight: 900;
 }
 .modal-text p {
 	text-align: center;
@@ -258,13 +268,91 @@ html, body {
 }
 
 .info-modal-explanation-cell {
-	margin-bottom: 15px;
+	margin-bottom: 12px;
 }
 
 .info-modal-explanation-cell span {
 	color: yellow;
 }
 
+.stats-modal-var-container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	padding-top: 5px;
+	padding-bottom: 20px;
+}
+
+.stats-modal-stat-obj {
+	width: 70px;
+	height: 90px;
+	position: relative;
+	font-size: 28px;
+	text-align: center;
+
+	display: inline-block;
+}
+
+.stats-modal-stat-obj-text {
+	position: absolute;
+	left: 0%;
+	bottom: 0%;
+	width: 70px;
+	height: 40px;
+	font-size: 12px;
+}
+
+.stats-modal-guess-distribution {
+	text-align: center;
+	width: 100%;	
+	height: 200px;
+	background-color: transparent;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+
+	font-size: 16px;
+
+	overflow-y: hidden;
+}
+
+.stats-modal-guess-row-ids {
+	height: 100%;
+	width: 10%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	background-color: transparent;
+}
+
+.stats-modal-guess-row-val {
+	height: 12%;
+	text-align: center;
+	justify-items: center;
+}
+
+.stats-modal-guess-row-bars {
+	height: 100%;
+	width: 90%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: transparent;
+}
+
+.stats-modal-guess-row-bar {
+	height: 12%;
+	background-color: grey;
+	text-align: right;
+
+	box-sizing: border-box;
+	padding-right: 5px;
+
+	width: 8%;
+}
 
 .main {
 	position: relative;
@@ -297,14 +385,10 @@ html, body {
 	text-align: center;
 }
 
-
-#start-player {
+.emphasize {
 	color: yellow;
 }
 
-#end-player {
-	color:  yellow;
-}
 
 .game-table {
 	margin:0 auto;
@@ -399,7 +483,7 @@ input[type=submit] {
 .autocomplete-items div {
 	width: 100%;
 	min-height: 35px;
-  	line-height:35px;
+  line-height:35px;
 
 	background-color: #061219;
 	align-items: center;
@@ -447,6 +531,10 @@ strong {
 
 .wrong {
 	color: red !important;
+}
+
+.current {
+	background-color: green;
 }
 
 [contenteditable]:focus {

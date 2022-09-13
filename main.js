@@ -9,6 +9,9 @@ let Guesses = [];
 let LatestGuessField = null;
 
 let MAXGUESSES = 6;
+let popular_players = [10586, 3011, 10081, 5882, 11075, 2503, 4044, 8357, 71, 10244, 8611, 6194, 7480, 11222, 8019, 2769, 5578, 10447, 6229, 5543, 9906, 7963, 5983, 2484, 2484, 1900, 3082, 6360, 11048, 341, 6186, 330, 7850, 696, 6022, 55, 9531, 7143, 10230, 2458, 6876, 6311, 2449, 9725, 3952, 116, 9318, 2493, 3, 6859, 1662, 7780, 4605, 1070, 8249, 4446, 6949, 7701, 9902, 8027, 4908, 8132, 4441, 3274, 5176, 4359, 2925, 7592, 1513, 11028, 11459, 2226, 7833, 3381, 5023, 10364, 1516, 3054, 11041, 5443, 1844, 6889, 2327, 10116, 2327, 6889, 309, 4850, 6534, 3936, 7948, 3314, 3181, 9629, 6126, 1072, 4231, 3934, 7897, 10726, 3738, 8442, 11446, 7633, 6768, 2523, 11, 4072, 8144, 9311, 25, 3740, 698, 9449, 6572, 6501, 7739, 9711, 2242, 2726, 2045, 8337, 4581, 7109, 2417, 2930, 11297, 6104, 8869, 7373, 9244, 1791, 8893, 1381, 8965, 752, 10032, 6267, 306, 4793, 2741, 2133, 7824, 581, 10908, 11142, 2406, 4096, 1971, 10878, 5450, 8715, 8989, 1224, 10616, 5672, 3086, 6914, 8913, 10951, 10182, 3671, 6833, 7019, 9221, 421, 2189, 1522, 2910, 10729, 6186];
+
+let Statistics = {"gamesPlayed": 24, "gamesWon": 19, "gameStats": {"1": 3, "2": 6, "3": 5, "4": 2, "5": 0, "6": 1, "fail": 2}, "currentStreak": 15, "maxStreak": 15};
 
 function cyrb128(str) {
     let h1 = 1779033703, h2 = 3144134277,
@@ -52,7 +55,6 @@ var randomChoice = function(arr, rfunc) {
 }
 
 function setTodayPlayers(){
-    let popular_players = [2214, 3045, 10193, 5952, 11201, 2532, 4088, 8456, 71, 10357, 8713, 6269, 7567, 11353, 8115, 2801, 5644, 10564, 6304, 5609, 10016, 8059, 6056, 2512, 2512, 1923, 3117, 6437, 11173, 344, 6261, 333, 7944, 703, 6095, 55, 9637, 7227, 10343, 2485, 6957, 6386, 2476, 9834, 3994, 118, 9422, 2522, 3, 6940, 1683, 7871, 4660, 1081, 8347, 4495, 7033, 7791, 10012, 8123, 4965, 8228, 4490, 3311, 5237, 4408, 2958, 7681, 1531, 11152, 11591, 2252, 7926, 3420, 5081, 10481, 1535, 3089, 11165, 5507, 1867, 6971, 2353, 10229, 2353, 6971, 312, 4907, 6612, 3978, 8044, 3353, 3217, 9737, 6201, 1083, 4275, 3976, 7991, 10846, 3778, 8543, 11578, 7722, 6848, 2553, 11, 4116, 8240, 9415, 25, 3780, 705, 9555, 6651, 6578, 7830, 9820, 2268, 2758, 2069, 8435, 4636, 7193, 2444, 2964, 11428, 6178, 8972, 7460, 9348, 1813, 8996, 1397, 9068, 1495, 759, 10143, 6342, 309, 4850, 2773, 2157, 7916, 586, 11031, 11270, 2433, 4140, 1995, 11001, 5514, 9171, 8817, 781, 9092, 1239, 10735, 5739, 2609, 3122, 6998, 9016, 11075, 10295, 3710, 6914, 8010, 8057, 7103, 9325, 425];
     rand = getPsrand(); // get today's random gen function
     StartPlayer = randomChoice(popular_players, rand);
     console.log("Start Player: " + StartPlayer);
@@ -111,8 +113,9 @@ function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
 }
 
-function get_share_text() {
-    share_str = "";
+function generate_share_text() {
+    share_str = "Touchdown\n";
+    share_str += PlayerIds[StartPlayer] + " → " + PlayerIds[EndPlayer] + "\n🏈";
     for (var i in Guesses){
         if (Guesses[i][1] === false){
             share_str += '🟥';
@@ -120,23 +123,69 @@ function get_share_text() {
             share_str += '🟩';
         }
     }
-
-    share_str += '🏈';
-
+    for (i = 0; i < 6 - Guesses.length; i++){
+        share_str += '⬜';
+    }
+    share_str += "\nhttps://touchdown.life";
     return share_str;
 }
 
+function share(){
+    text = generate_share_text();
+    navigator.clipboard.writeText(text);
+}
+
+
+function update_stats_modal() {
+    document.getElementById('games-played').innerHTML = Statistics['gamesPlayed'];
+    document.getElementById('win-percentage').innerHTML = Math.round(Statistics['gamesWon']/Statistics['gamesPlayed'] * 100) + "%";
+    document.getElementById('current-streak').innerHTML = Statistics['currentStreak'];
+    document.getElementById('max-streak').innerHTML = Statistics['maxStreak'];
+
+    var maxval = Math.max(...Object.values(Statistics["gameStats"]));
+    for (var i = 1; i <= 6; i++){
+        document.getElementById('stats-r-' + i).innerHTML = Statistics["gameStats"][i];
+        var s_w_calc = (92 * Statistics["gameStats"][i]/maxval) + 8;
+        document.getElementById('stats-r-' + i).style.width = s_w_calc + "%";
+    }
+}
+
+function bfs_pop(pop_list){
+    var explored = [];
+    var queue = [[StartPlayer]];
+    if (StartPlayer === EndPlayer){
+        return [start];
+    }
+    while (queue) {
+        var path = queue.shift();
+        var node = path[path.length - 1];
+
+        if (!explored.includes(node)){
+            var adjs = PlayerTeammates[node];
+            for (adj_id in adjs) {
+                var adj = adjs[adj_id];
+                if (pop_list.includes(adj)){
+                    var new_path = [...path];
+                    new_path.push(adj);
+                    queue.push(new_path);
+
+                    if (adj === EndPlayer) {
+                        return new_path
+                    }
+                }
+            }
+            explored.push(node);
+        }
+    }
+    return null; 
+}
 
 function bfs(){
     var explored = [];
     var queue = [[StartPlayer]];
-
-    var found = false;
-
     if (StartPlayer === EndPlayer){
         return [start];
     }
-
     while (queue) {
         var path = queue.shift();
         var node = path[path.length - 1];
@@ -148,12 +197,10 @@ function bfs(){
                 var new_path = [...path];
                 new_path.push(adj);
                 queue.push(new_path);
-
                 if (adj === EndPlayer) {
                     return new_path
                 }
             }
-
             explored.push(node);
         }
     }

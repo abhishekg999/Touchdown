@@ -27,16 +27,16 @@
 	<div class="modal" id="info-modal">
 	    <div class="modal-content">
 			<header>
-				<div class="close">&times;</div>
+				<div class="close" id="info-close">&times;</div>
 			</header>
 
 			<div class="modal-text">
 		      	<div class="modal-header">
 			        <header>HOW TO PLAY</header>
-			        <p>Connect two NFL players through 6 or fewer mutual teammates. </p>    		
+			        Connect two NFL players through 6 or fewer mutual teammates.    		
 		      	</div>
 	       
-	        	<p>Example: Connect <bold>Drew Brees</bold> to <bold>Aaron Rodgers</bold></p>
+	        	<p>Example: Connect <strong>Drew Brees</strong> to <strong>Aaron Rodgers</strong></p>
 
 
 		        <div class="info-modal-sample">
@@ -57,18 +57,73 @@
 		        	</div>
 
 		        	<div class="info-modal-explanation-cell">
-		        		<span>Guess 1: <span class="wrong">Patrick Mahomes</span></span>
+		        		<span>Guess 2: <span class="wrong">Patrick Mahomes</span></span>
 		        		<div class="info-modal-explanation-reason">
 		        		Patrick Mahomes never played with Brandon Cooks.
 		        		</div>	  
 		        	</div>
 		        	<div class="info-modal-explanation-cell">
-		        		<span>Guess 1: <span class="correct">Randall Cobb</span></span>
+		        		<span>Guess 3: <span class="correct">Randall Cobb</span></span>
 		        		<div class="info-modal-explanation-reason">
 		        		Randall Cobb played with Brandin Cooks, and also played with Rodgers.  		
 		        		</div>	
 		        	</div>
 		        </div>
+	      	</div>
+	    </div>
+	</div>
+
+
+
+	<div class="modal" id="stats-modal" style="display: none">
+	    <div class="modal-content">
+			<header>
+				<div class="close" id="stats-close">&times;</div>
+			</header>
+
+			<div class="modal-text">
+		      	<div class="modal-header">
+			        <header>Statistics</header> 
+					View your game statistics! If this looks off, make sure you are using the same browser when playing.
+		      	</div>
+
+		      	<div class="stats-modal-var-container">
+			        <div class="stats-modal-stat-obj">
+			        	<div id="games-played"></div>
+		        		<div class="stats-modal-stat-obj-text">Played</div>
+		        	</div>
+		        	<div class="stats-modal-stat-obj">
+		        		<div id="win-percentage"></div>
+		        		<div class="stats-modal-stat-obj-text">Win %</div>
+		        	</div>
+		        	<div class="stats-modal-stat-obj">
+		        		<div id="current-streak"></div>
+		        		<div class="stats-modal-stat-obj-text">Currect Streak</div>
+		        	</div>
+		        	<div class="stats-modal-stat-obj">
+		        		<div id="max-streak"></div>
+		        		<div class="stats-modal-stat-obj-text">Max Streak</div>
+		        	</div>
+		        </div>  
+
+		        <div class="stats-modal-guess-distribution">
+		        	<div class="stats-modal-guess-row-ids">
+		        		<div class="stats-modal-guess-row-val">1</div>
+		        		<div class="stats-modal-guess-row-val">2</div>
+		        		<div class="stats-modal-guess-row-val">3</div>
+		        		<div class="stats-modal-guess-row-val">4</div>
+		        		<div class="stats-modal-guess-row-val">5</div>
+		        		<div class="stats-modal-guess-row-val">6</div>
+		        	</div>
+		        	<div class="stats-modal-guess-row-bars">
+		        		<div class="stats-modal-guess-row-bar current" id="stats-r-1">0</div>
+		        		<div class="stats-modal-guess-row-bar" id="stats-r-2">0</div>
+		        		<div class="stats-modal-guess-row-bar" id="stats-r-3">0</div>
+		        		<div class="stats-modal-guess-row-bar" id="stats-r-4">0</div>
+		        		<div class="stats-modal-guess-row-bar" id="stats-r-5">0</div>
+		        		<div class="stats-modal-guess-row-bar" id="stats-r-6">0</div>
+		        	</div>
+		        </div>		
 	      	</div>
 	    </div>
 	</div>
@@ -85,25 +140,18 @@
 		</div>
 
 		<script type="text/javascript">
-			var modal = document.getElementById("info-modal");
-			var btn = document.getElementById("info-icon");
-			var span = document.getElementsByClassName("close")[0];
+			var info_modal = document.getElementById("info-modal");
+			var info_btn = document.getElementById("info-icon");
+			var info_span = document.getElementById("info-close");
 
 			// When the user clicks the button, open the modal 
-			btn.onclick = function() {
-			  modal.style.display = "flex";
+			info_btn.onclick = function() {
+			  info_modal.style.display = "flex";
 			}
 
 			// When the user clicks on <span> (x), close the modal
-			span.onclick = function() {
-			  modal.style.display = "none";
-			}
-
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-			  if (event.target == modal) {
-			    modal.style.display = "none";
-			  }
+			info_span.onclick = function() {
+			  info_modal.style.display = "none";
 			}
 		</script>
 
@@ -116,32 +164,39 @@
 		</div>
 
 		<script type="text/javascript">
-			var modal = document.getElementById("info-modal");
-			var btn = document.getElementById("stats-icon");
-			var span = document.getElementsByClassName("close")[0];
+			var stats_modal = document.getElementById("stats-modal");
+			var stats_btn = document.getElementById("stats-icon");
+			var stats_span = document.getElementById("stats-close");
 
 			// When the user clicks the button, open the modal 
-			btn.onclick = function() {
-			  modal.style.display = "flex";
+			stats_btn.onclick = function() {
+		  		stats_modal.style.display = "flex";
+		  		update_stats_modal();
 			}
 
 			// When the user clicks on <span> (x), close the modal
-			span.onclick = function() {
-			  modal.style.display = "none";
+			stats_span.onclick = function() {
+			  stats_modal.style.display = "none";
 			}
 
+		</script>
+
+		<script type="text/javascript">
 			// When the user clicks anywhere outside of the modal, close it
 			window.onclick = function(event) {
-			  if (event.target == modal) {
-			    modal.style.display = "none";
-			  }
+				if (event.target == info_modal) {
+					info_modal.style.display = "none";
+				}
+				if (event.target == stats_modal) {
+					stats_modal.style.display = "none";
+				}
 			}
 		</script>
 	</div>
 
 	<div class="main">
 		<div class="game-prompt">
-			<span>Connect <span id="start-player">Start Player</span> to <span id="end-player">End Player</span> through mutual teammates.</span>
+			<span>Connect <span id="start-player" class="emphasize">Start Player</span> to <span id="end-player" class="emphasize">End Player</span> through mutual teammates.</span>
 		</div>
 
 		<div class="game-table">
