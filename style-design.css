@@ -223,6 +223,7 @@ html, body {
 	text-align: center;
 
 	padding-bottom: 12px;
+	margin-bottom: 3px;
 }
 
 .modal-content { 
@@ -244,7 +245,7 @@ html, body {
 
 .modal-text {
 	display: block;
-	font-family: 'Open Sans';font-size: 12px;
+	font-family: 'Open Sans';font-size: 13px;
 	color: white;
 
 }
@@ -287,7 +288,7 @@ html, body {
 	width: 70px;
 	height: 90px;
 	position: relative;
-	font-size: 28px;
+	font-size: 30px;
 	text-align: center;
 
 	display: inline-block;
