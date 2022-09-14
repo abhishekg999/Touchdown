@@ -303,7 +303,7 @@ async function init() {
     }
 
     setTodayPlayers();
-    if (localStorage.getItem("CurrentGame") !== null && CurrentGame["id"] == getDate()){
+    if (localStorage.getItem("CurrentGame") !== null && CurrentGame["id"] === btoa(getDate())){
         CurrentGame = JSON.parse(localStorage.getItem("CurrentGame"));  
         document.getElementById("info-modal").style.display = "none";
     }
