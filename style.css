@@ -276,6 +276,20 @@ html, body {
 	color: yellow;
 }
 
+.stats-modal-shortest-path {
+	text-align: center;
+	font-size: 16px;
+	font-weight: 800;
+}
+
+.stats-modal-sp-route {
+	font-size: 14px;
+	font-weight: 400;
+	font-style: italic;
+
+	margin-bottom: 8px;
+}
+
 .stats-modal-var-container {
 	display: flex;
 	flex-direction: row;
