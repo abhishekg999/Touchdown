@@ -223,7 +223,7 @@ html, body {
 	text-align: center;
 
 	padding-bottom: 12px;
-	margin-bottom: 3px;
+	margin-bottom: 4px;
 }
 
 .modal-content { 
@@ -299,7 +299,7 @@ html, body {
 	left: 0%;
 	bottom: 0%;
 	width: 70px;
-	height: 40px;
+	height: 50px;
 	font-size: 12px;
 }
 
@@ -316,6 +316,7 @@ html, body {
 	font-size: 16px;
 
 	overflow-y: hidden;
+	padding-bottom: 5px;
 }
 
 .stats-modal-guess-row-ids {
@@ -353,6 +354,45 @@ html, body {
 	padding-right: 5px;
 
 	width: 8%;
+}
+
+.stats-modal-share {
+	padding-top: 15px;
+	text-align: center;
+}
+
+.share-button {
+  background-color: #FFFFFF;
+  border: 1px solid rgb(209,213,219);
+  border-radius: .5rem;
+  box-sizing: border-box;
+  color: #111827;
+  font-size: .875rem;
+  font-weight: 600;
+  line-height: 1.25rem;
+  padding: .75rem 1rem;
+  text-align: center;
+  text-decoration: none #D1D5DB solid;
+  text-decoration-thickness: auto;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  border: 1px solid black;
+}
+
+.share-button:hover {
+  background-color: rgb(249,250,251);
+}
+
+.share-button:focus {
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+.share-button:focus-visible {
+  box-shadow: none;
 }
 
 .main {

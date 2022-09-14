@@ -125,9 +125,15 @@
 		        	</div>
 		        </div>
 
-		        <div class="stats-modal-share">
-		        	
-		        </div>		
+		        <div class="stats-modal-share" style="display: none">
+		        	<button class="share-button" id="share-button">Share!</button>
+		        </div>	
+
+		        <script type="text/javascript">
+		        	document.getElementById("share-button").addEventListener("click", function (event){
+		        		share();
+		        	});
+		        </script>	
 	      	</div>
 	    </div>
 	</div>

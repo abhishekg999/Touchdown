@@ -17,8 +17,8 @@ let CurrentGame = {"id" : getDate(), "guesses": [], "finished": false, "won": fa
 let DONOTTOUCHTHIS = "";
 
 function getDate() {
-    return (Math.random() + 1).toString(36).substring(7); //ONLY USE FOR TESTING
-    //return new Date().toLocaleDateString();
+    //return (Math.random() + 1).toString(36).substring(7); //ONLY USE FOR TESTING
+    return new Date().toLocaleDateString();
 }
 
 function cyrb128(str) {
@@ -134,7 +134,7 @@ function getKeyByValue(object, value) {
 function generate_share_text() {
     share_str = "Touchdown\n";
     share_str += PlayerIds[StartPlayer] + " → " + PlayerIds[EndPlayer] + "\n🏈";
-    for (var i in Guesses){
+    for (var i in CurrentGame["guesses"]){
         if (CurrentGame["guesses"][i][1] === false){
             share_str += '🟥';
         } else {
@@ -248,6 +248,11 @@ function syncLocalStorage(){
     localStorage.setItem("Statistics", JSON.stringify(Statistics));
 }
 
+function winStatic(){
+    document.getElementById("next-pt").style.setProperty("display", "none", "important");
+    document.getElementsByClassName("stats-modal-share")[0].style.setProperty("display", "block");
+}
+
 async function init() {
     await loadPlayerId();
     await loadPlayerTeammates();
@@ -260,10 +265,12 @@ async function init() {
     setTodayPlayers();
     if (localStorage.getItem("CurrentGame") !== null && CurrentGame["id"] == getDate()){
         CurrentGame = JSON.parse(localStorage.getItem("CurrentGame"));  
+        document.getElementById("info-modal").style.display = "none";
     }
 
     if (localStorage.getItem("Statistics") !== null){
         Statistics = JSON.parse(localStorage.getItem("Statistics"));
+        document.getElementById("info-modal").style.display = "none";
     }
     syncLocalStorage();
 
@@ -279,8 +286,8 @@ async function init() {
     }
     updateGuessCnt();
 
-    if (CurrentGame["won"]){
-        document.getElementById("next-pt").style.setProperty("display", "none", "important");
+    if (CurrentGame["won"]){ //MAKE SURE TO UPDATE WIN CODE HERE AS WELL
+        winStatic();
     }
 
     //initialized
@@ -291,7 +298,7 @@ async function init() {
 function game_end(won) {
     CurrentGame["finished"] = true;
     CurrentGame["won"] = won;
-    document.getElementById("next-pt").style.setProperty("display", "none", "important");
+    winStatic();
 
     Statistics["gamesPlayed"]++;
     if (won){
@@ -307,6 +314,10 @@ function game_end(won) {
     }
 
     syncLocalStorage();
+    setTimeout(function(){
+        stats_modal.style.display = "flex";
+        update_stats_modal();
+    }, 1300);
 }
 
 function autocomplete(inp, arr) {
