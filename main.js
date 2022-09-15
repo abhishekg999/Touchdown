@@ -303,8 +303,11 @@ async function init() {
     }
 
     setTodayPlayers();
-    if (localStorage.getItem("CurrentGame") !== null && CurrentGame["id"] === btoa(getDate())){
-        CurrentGame = JSON.parse(localStorage.getItem("CurrentGame"));  
+    if (localStorage.getItem("CurrentGame") !== null){
+        CurrentGame = JSON.parse(localStorage.getItem("CurrentGame")); 
+        if (CurrentGame["id"] !== btoa(getDate())){
+            CurrentGame = {"id" : btoa(getDate()), "guesses": [], "finished": false, "won": false};
+        } 
         document.getElementById("info-modal").style.display = "none";
     }
 
