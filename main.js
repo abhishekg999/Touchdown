@@ -294,6 +294,8 @@ function loseStatic(){
 }
 
 async function init() {
+    var loading = new ldBar("#loading-bar")
+    loading.set(24);
     await loadPlayerId();
     await loadPlayerTeammates();
 
@@ -315,7 +317,7 @@ async function init() {
         Statistics = JSON.parse(localStorage.getItem("Statistics"));
         document.getElementById("info-modal").style.display = "none";
     }
-    syncLocalStorage();
+    syncLocalStorage(); //maybe remove this?
 
     document.getElementById("p-start").innerHTML = PlayerIds[StartPlayer];
     document.getElementById("p-end").innerHTML = PlayerIds[EndPlayer];
@@ -338,10 +340,18 @@ async function init() {
             loseStatic();
         }
     }
+   
 
     //initialized
-    document.getElementById("loading-screen").style.display = "none";
-    autocomplete(document.getElementById("ui"), player_names);
+    setTimeout(function(){
+        loading.set(100);  
+        setTimeout(function(){
+            document.getElementById("loading-screen").style.display = "none";
+            autocomplete(document.getElementById("ui"), player_names); 
+        }, 1000);  
+    }, 800);
+    
+    
 }
 
 function game_end(won) {
@@ -480,6 +490,7 @@ function autocomplete(inp, arr) {
 
 
 
-
-init();
-console.log("loaded");
+window.onload = function() {
+    init();
+    console.log("loaded");
+}
