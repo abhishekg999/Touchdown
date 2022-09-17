@@ -183,6 +183,8 @@ function update_stats_modal() {
     if (CurrentGame["finished"] && CurrentGame["won"]) {
         document.getElementById('stats-r-' + CurrentGame["guesses"].length).classList.add("current");
     }
+
+    setPaths();
 }
 
 function bfs_pop(pop_list){
@@ -205,9 +207,6 @@ function bfs_pop(pop_list){
                     queue.push(new_path);
 
                     if (adj === EndPlayer) {
-                        for (i in new_path){
-                            console.log(PlayerIds[new_path[i]]);
-                        }
                         return new_path
                     }
                 }
@@ -236,9 +235,6 @@ function bfs(){
                 new_path.push(adj);
                 queue.push(new_path);
                 if (adj === EndPlayer) {
-                    for (i in new_path){
-                        console.log(PlayerIds[new_path[i]]);
-                    }
                     return new_path
                 }
             }
@@ -254,49 +250,47 @@ function syncLocalStorage(){
     localStorage.setItem("Statistics", JSON.stringify(Statistics));
 }
 
+function setPaths(){
+    var pos_path = bfs_pop(popular_players);
+    var sho_path = bfs();
+
+    if (pos_path === null){
+        document.getElementById("p-route-pop").style.display = "none";
+    }
+
+    if (sho_path === null){
+        document.getElementById("p-route-sho").style.display = "none";
+    }
+
+    var pos_string = "<span>" + PlayerIds[StartPlayer] + " → ";
+    for (i = 1; i < pos_path.length - 1; i++){
+        pos_string += "<span class=\"correct\">" + PlayerIds[pos_path[i]] + "</span> → ";
+    }
+    pos_string += PlayerIds[EndPlayer] + "</span>";    
+
+    var sho_string = "<span>" + PlayerIds[StartPlayer] + " → ";
+    for (i = 1; i < sho_path.length - 1; i++){
+        sho_string += "<span class=\"correct\">" + PlayerIds[sho_path[i]] + "</span> → ";
+    }
+    sho_string += PlayerIds[EndPlayer] + "</span>";    
+
+    document.getElementById("p-route-pop").innerHTML = pos_string;
+    document.getElementById("p-route-sho").innerHTML = sho_string;
+
+}
+
 function winStatic(){
     document.getElementById("next-pt").style.setProperty("display", "none", "important");
     document.getElementsByClassName("stats-modal-share")[0].style.setProperty("display", "block");
     document.getElementsByClassName("stats-modal-shortest-path")[0].style.setProperty("display", "block");
-    document.getElementById("path-phrase").innerHTML = "Alternate";
-
-    var pos_path;
-    pos_path = bfs_pop(popular_players);
-   
-    if (pos_path === null){
-        pos_path = bfs();
-    }
-
-    var path_string = "<span>" + PlayerIds[StartPlayer] + " → ";
-    for (i = 1; i < pos_path.length - 1; i++){
-        path_string += "<span class=\"correct\">" + PlayerIds[pos_path[i]] + "</span> → ";
-    }
-    path_string += PlayerIds[EndPlayer] + "</span>";   
-
-    document.getElementById("p-route").innerHTML = path_string;
+    //document.getElementById("path-phrase").innerHTML = "Alternate";
 }
 
 function loseStatic(){
     document.getElementById("next-pt").style.setProperty("display", "none", "important");
     document.getElementsByClassName("stats-modal-share")[0].style.setProperty("display", "block");
     document.getElementsByClassName("stats-modal-shortest-path")[0].style.setProperty("display", "block");
-    document.getElementById("path-phrase").innerHTML = "Possible";
-
-
-    var pos_path;
-    pos_path = bfs_pop(popular_players);
-   
-    if (pos_path === null){
-        pos_path = bfs();
-    }
-
-    var path_string = "<span>" + PlayerIds[StartPlayer] + " → ";
-    for (i = 1; i < pos_path.length - 1; i++){
-        path_string += "<span class=\"correct\">" + PlayerIds[pos_path[i]] + "</span> → ";
-    }
-    path_string += PlayerIds[EndPlayer] + "</span>"; 
-
-    document.getElementById("p-route").innerHTML = path_string;
+    //document.getElementById("path-phrase").innerHTML = "Possible";
 }
 
 async function init() {
