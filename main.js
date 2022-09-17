@@ -205,6 +205,9 @@ function bfs_pop(pop_list){
                     queue.push(new_path);
 
                     if (adj === EndPlayer) {
+                        for (i in new_path){
+                            console.log(PlayerIds[new_path[i]]);
+                        }
                         return new_path
                     }
                 }
@@ -233,6 +236,9 @@ function bfs(){
                 new_path.push(adj);
                 queue.push(new_path);
                 if (adj === EndPlayer) {
+                    for (i in new_path){
+                        console.log(PlayerIds[new_path[i]]);
+                    }
                     return new_path
                 }
             }
