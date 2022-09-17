@@ -56,7 +56,7 @@ function daysPassed(){
     var date1 = new Date("9/16/2022");
     var today = new Date(getDate());
 
-    return (date2.getTime() - date1.getTime())/(1000 * 3600 * 24);
+    return (today.getTime() - date1.getTime())/(1000 * 3600 * 24);
 }
 
 function getPsrand(){

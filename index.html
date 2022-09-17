@@ -147,11 +147,14 @@
 
 		        <div class="stats-modal-share" style="display: none">
 		        	<button class="share-button" id="share-button">Share!</button>
+		        	<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
 		        </div>	
 
 		        <script type="text/javascript">
 		        	document.getElementById("share-button").addEventListener("click", function (event){
 		        		share();
+		        		var tooltip = document.getElementById("myTooltip");
+					  	tooltip.innerHTML = "Copied to clipboard";
 		        	});
 		        </script>	
 	      	</div>
