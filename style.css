@@ -379,7 +379,7 @@ html, body {
   border-color: #555 transparent transparent transparent;
 }
 
-.stats-modal-share:hover .tooltiptext {
+.share-button:hover ~ .tooltiptext {
   visibility: visible;
   opacity: 1;
 }
@@ -407,7 +407,7 @@ html, body {
 }
 
 .share-button:hover {
-  background-color: rgb(249,250,251);
+  background-color: rgb(200, 200, 200);
 }
 
 .share-button:focus {
