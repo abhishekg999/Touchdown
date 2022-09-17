@@ -52,6 +52,13 @@ function sfc32(a, b, c, d) {
     }
 }
 
+function daysPassed(){
+    var date1 = new Date("9/16/2022");
+    var today = new Date(getDate());
+
+    return (date2.getTime() - date1.getTime())/(1000 * 3600 * 24);
+}
+
 function getPsrand(){
     let today;
     today = getDate();
@@ -132,7 +139,7 @@ function getKeyByValue(object, value) {
 }
 
 function generate_share_text() {
-    share_str = "Touchdown\n";
+    share_str = "Touchdown #" + daysPassed() + "\n";
     share_str += PlayerIds[StartPlayer] + " → " + PlayerIds[EndPlayer] + "\n🏈";
     for (var i in CurrentGame["guesses"]){
         if (CurrentGame["guesses"][i][1] === false){
