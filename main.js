@@ -53,7 +53,7 @@ function sfc32(a, b, c, d) {
 }
 
 function daysPassed(){
-    var date1 = new Date("9/16/2022");
+    var date1 = new Date("9/17/2022");
     var today = new Date(getDate());
 
     return (today.getTime() - date1.getTime())/(1000 * 3600 * 24);
