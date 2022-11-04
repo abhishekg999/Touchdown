@@ -412,7 +412,7 @@ function autocomplete(inp, arr) {
 
         // populate auto complete
         var result_count = 0;
-        for (i = 0; i < arr.length; i++) {
+        for (i = 0; i < arr.length && result_count < 10; i++) {
             if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                 result_count++; 
                 b = document.createElement("DIV");
