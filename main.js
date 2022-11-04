@@ -53,7 +53,7 @@ function sfc32(a, b, c, d) {
 }
 
 function daysPassed(){
-    var date1 = new Date("9/16/2022");
+    var date1 = new Date("9/17/2022");
     var today = new Date(getDate());
 
     return (today.getTime() - date1.getTime())/(1000 * 3600 * 24);
@@ -408,11 +408,11 @@ function autocomplete(inp, arr) {
         a.setAttribute("class", "autocomplete-items");
 
         // add list to autocomplete wrapper
-        document.getElementById("autocomplete-wrapper").appendChild(a);
+        document.getElementsByClassName("autocomplete-footer")[0].before(a);
 
         // populate auto complete
         var result_count = 0;
-        for (i = 0; i < arr.length; i++) {
+        for (i = 0; i < arr.length && result_count <= 4; i++) {
             if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                 result_count++; 
                 b = document.createElement("DIV");
@@ -448,6 +448,8 @@ function autocomplete(inp, arr) {
                 a.appendChild(b);
             }
         }
+        document.getElementById("auto-result-cnt").innerHTML = result_count;
+        //document.getElementsByClassName("autocomplete-footer")[0].style.display = "block";
     });
 
     inp.addEventListener("keydown", function(e) {
@@ -488,6 +490,9 @@ function autocomplete(inp, arr) {
                 x[i].parentNode.removeChild(x[i]);
             }
         }
+
+        document.getElementsByClassName("autocomplete-footer")[0].style.display = "none";
+
     }
 
     document.addEventListener("click", function(e) {

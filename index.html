@@ -122,7 +122,7 @@
 		        	<div class="stats-modal-stat-obj">
 		        		<div id="max-streak"></div>
 		        		<div class="stats-modal-stat-obj-text">Max Streak</div>
-		        	</div>
+		        	</div>        	
 		        </div>  
 
 		        <div class="stats-modal-guess-distribution">
@@ -148,6 +148,12 @@
 		        	<button class="share-button" id="share-button">Share!</button>
 		        	<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
 		        </div>	
+
+		        <div class="stats-modal-footer">
+	        		Created by A&A (<a href="https://www.twitter.com/abhishekg999">Abhishek</a> and <a href="https://www.twitter.com/aaranguha">Aaran</a>)
+	        		<br>
+
+	        	</div>
 
 		        <script type="text/javascript">
 		        	document.getElementById("share-button").addEventListener("click", function (event){
@@ -237,7 +243,9 @@
 
 			<div id="next-pt">	
 				<div class="cell" id="ui" contenteditable=true data-text="Enter player name here" data-gramm="false" data-gramm_editor="false"data-enable-grammarly="false"></div>
-				<div class="autocomplete-wrapper" id="autocomplete-wrapper"></div>
+				<div class="autocomplete-wrapper" id="autocomplete-wrapper">
+					<div class="autocomplete-footer" style="display: none;"><span id="auto-result-cnt">0</span> results found.</div>
+				</div>
 			</div>
  
 			<div id="end-pt">
