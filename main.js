@@ -1,5 +1,6 @@
 let PlayerIds;
 let PlayerTeammates;
+let PlayerDefaultDates;
 
 let StartPlayer;
 let EndPlayer;
@@ -72,15 +73,20 @@ var randomChoice = function (arr, rfunc) {
 }
 
 function setTodayPlayers() {
-    rand = getPsrand(); // get today's random gen function
-    StartPlayer = randomChoice(popular_players, rand);
-    console.log("Start Player: " + StartPlayer);
-
-    EndPlayer = randomChoice(popular_players, rand);
-
-    while (EndPlayer === StartPlayer || PlayerTeammates[StartPlayer].includes(EndPlayer)) {
+    let today = getDate();
+    if (PlayerDefaultDates.hasOwnProperty(today)) {
+        // assume inputted players will be valid
+        [StartPlayer, EndPlayer] = PlayerDefaultDates[today];
+    } else {
+        rand = getPsrand(); // get today's random gen function
+        StartPlayer = randomChoice(popular_players, rand);
         EndPlayer = randomChoice(popular_players, rand);
+
+        while (EndPlayer === StartPlayer || PlayerTeammates[StartPlayer].includes(EndPlayer)) {
+            EndPlayer = randomChoice(popular_players, rand);
+        }
     }
+    console.log("Start Player: " + StartPlayer);
     console.log("End Player: " + EndPlayer);
 
     PrevPlayer = StartPlayer;
@@ -98,6 +104,11 @@ async function loadPlayerTeammates() {
     console.log("loaded player teammates")
 }
 
+async function loadPlayerDefaultDates() {
+    const response = await fetch("./player_default_dates.json");
+    PlayerDefaultDates = await response.json();
+    console.log("loaded player default dates")
+}
 
 function renderGuess(id, acc, num) {
     let inner_div = document.createElement("div");
@@ -257,9 +268,28 @@ function syncLocalStorage() {
     localStorage.setItem("Statistics", JSON.stringify(Statistics));
 }
 
+function addValuesToListIfNotExist(list, valuesToAdd) {
+    const uniqueSet = new Set(list);
+    for (const value of valuesToAdd) {
+      if (!uniqueSet.has(value)) {
+        uniqueSet.add(value);
+      }
+    }
+    return Array.from(uniqueSet);
+  }
+
 function setPaths() {
-    var pos_path = bfs_pop(popular_players);
-    var sho_path = bfs();
+    let pos_path;
+    let sho_path;
+
+    // quick, not clean way to do
+    try {
+        pos_path = bfs_pop(addValuesToListIfNotExist(popular_players, [StartPlayer, EndPlayer]));
+    } catch (err) {
+        pos_path = null;
+    }
+
+    sho_path = bfs();
 
     if (pos_path === null) {
         document.getElementById("p-route-pop").style.display = "none";
@@ -305,6 +335,7 @@ async function init() {
     loading.set(24);
     await loadPlayerId();
     await loadPlayerTeammates();
+    await loadPlayerDefaultDates();
 
     var player_names = []
     for (var key in PlayerIds) {
