@@ -1,275 +1,246 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-88LDCLG3YR"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'G-88LDCLG3YR');
-	</script>
-	<title>Touchdown</title> 
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-	<script type="text/javascript" src="main.js"></script>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
-	<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
-	<link rel="stylesheet" type="text/css" href="loading-bar.css"/>
-	<script type="text/javascript" src="loading-bar.js"></script>
-	<link rel="stylesheet" href="style.css">
-	
-	<meta name="description" content="Touchdown! Connect NFL players by their mutual teammates. New players to connect every day! Can you connect them in the fewest number of players?"/>
-
-</head>
-<body>
-	<div class="loading-screen" id="loading-screen">
-		<div class="loading-header">
-			<span id="loading-header-text">Touchdown</span>
-		</div>
-		<div class="loading-bar-wrapper">
-			<div class="ldBar" id="loading-bar" data-type="fill" data-fill-dir="btt" data-fill-background="#fff2e2" data-fill-width="20" data-img="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg enable-background='new 0 0 58 58' fill='%23d95e00' version='1.1' viewBox='0 0 58 58' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50.554,0h-3.637C21.047,0,0,21.047,0,46.917v3.637C0,54.66,3.34,58,7.446,58h3.637C36.953,58,58,36.953,58,11.083V7.446 C58,3.34,54.66,0,50.554,0z M2,50.554v-3.637C2,22.149,22.149,2,46.917,2h3.637c1.265,0,2.427,0.437,3.353,1.164 c-7.562,2.278-14.041,4.664-19.662,7.667l-2.538-2.538c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.134,2.134 c-1.306,0.756-2.564,1.553-3.778,2.394l-2.942-2.942c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.714,2.714 c-1.167,0.88-2.291,1.811-3.375,2.796l-2.925-2.925c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.886,2.886 c-1.023,1.011-2.009,2.08-2.962,3.21l-2.51-2.51c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.658,2.658 c-0.885,1.138-1.742,2.337-2.57,3.602l-2.674-2.674c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.991,2.991 c-0.762,1.254-1.502,2.569-2.22,3.951l-2.356-2.356c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.829,2.829 c-0.657,1.354-1.296,2.773-1.92,4.251l-2.494-2.494c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l3.085,3.085 c-1.544,3.882-2.99,8.192-4.37,12.983C2.784,53.774,2,52.254,2,50.554z M56,11.083C56,35.851,35.851,56,11.083,56H7.446 c-0.57,0-1.12-0.089-1.637-0.252c1.307-4.579,2.672-8.697,4.112-12.412l2.371,2.371C12.488,45.902,12.744,46,13,46 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.983-2.983c0.616-1.496,1.247-2.917,1.892-4.28l2.677,2.677 C15.488,39.902,15.744,40,16,40c0.256,0,0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.16-3.16 c0.709-1.399,1.436-2.728,2.184-3.988l2.562,2.562C18.488,33.902,18.744,34,19,34s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.9-2.9c0.82-1.282,1.665-2.493,2.536-3.636l2.95,2.95C22.488,28.902,22.744,29,23,29 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.114-3.114c0.949-1.145,1.93-2.218,2.943-3.229l2.757,2.757 C26.488,23.902,26.744,24,27,24s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.725-2.725 c1.087-0.993,2.214-1.92,3.379-2.793l2.932,2.932C31.488,19.902,31.744,20,32,20s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.698-2.698c1.224-0.838,2.493-1.624,3.807-2.365l3.477,3.477C37.488,16.902,37.744,17,38,17 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.056-3.056c5.656-2.93,12.14-5.179,19.673-7.412 C55.754,5.603,56,6.496,56,7.446V11.083z'/%3E%3C/svg%3E%0A" data-img-size="320,320" data-value="0"></div>
-		</div>
-		
-
-		<div class="loading-footer">
-			<!-- <span id="loading-footer-text">Loading resources<span id="loading-footer-dots"></span></span><br> -->
-		</div>
-	</div>
-
-	<div class="modal" id="info-modal">
-	    <div class="modal-content">
-			<header>
-				<div class="close" id="info-close">&times;</div>
-			</header>
-
-			<div class="modal-text">
-		      	<div class="modal-header">
-			        <header>HOW TO PLAY</header>
-			        Connect two NFL players through 6 or fewer mutual teammates.    		
-		      	</div>
-	       
-	        	<p>Example: Connect <strong>Drew Brees</strong> to <strong>Aaron Rodgers</strong></p>
-
-
-		        <div class="info-modal-sample">
-		          <div class="cell"> Drew Brees </div>
-		          <div class="cell correct"> Brandin Cooks </div>
-		          <div class="cell wrong"> Patrick Mahomes </div>
-		          <div class="cell correct"> Randall Cobb </div>
-		          <div class="cell"> Aaron Rodgers </div>
-		        </div>
-
-
-		        <div class="info-modal-guess-explanation">
-		        	<div class="info-modal-explanation-cell">
-		        		<span>Guess 1: <span class="correct">Brandin Cooks</span></span>
-		        		<div class="info-modal-explanation-reason">
-		        		Brandon Cooks played with Drew Brees, however, he's never played with Rodgers.		
-		        		</div>        		  
-		        	</div>
-
-		        	<div class="info-modal-explanation-cell">
-		        		<span>Guess 2: <span class="wrong">Patrick Mahomes</span></span>
-		        		<div class="info-modal-explanation-reason">
-		        		Patrick Mahomes never played with Brandon Cooks.
-		        		</div>	  
-		        	</div>
-		        	<div class="info-modal-explanation-cell">
-		        		<span>Guess 3: <span class="correct">Randall Cobb</span></span>
-		        		<div class="info-modal-explanation-reason">
-		        		Randall Cobb played with Brandin Cooks, and also played with Rodgers.  		
-		        		</div>	
-		        	</div>
-		        </div>
-	      	</div>
-	    </div>
-	</div>
-
-
-
-	<div class="modal" id="stats-modal" style="display: none">
-	    <div class="modal-content">
-			<header>
-				<div class="close" id="stats-close">&times;</div>
-			</header>
-
-			<div class="modal-text">
-				<div class="stats-modal-shortest-path" style="display: none">
-					<span>Shortest Path: </span>
-	        		<div class="stats-modal-sp-route" id="p-route-sho"></div>
-
-	        		<span>Popular Player Path: </span>
-	        		<div class="stats-modal-sp-route" id="p-route-pop"></div>       		
-	        	</div>
-		      	<div class="modal-header">
-			        <header>Statistics</header> 
-					View your game statistics! If this looks off, make sure you are using the same browser when playing.
-		      	</div>
-
-		      	<div class="stats-modal-var-container">
-			        <div class="stats-modal-stat-obj">
-			        	<div id="games-played"></div>
-		        		<div class="stats-modal-stat-obj-text">Played</div>
-		        	</div>
-		        	<div class="stats-modal-stat-obj">
-		        		<div id="win-percentage"></div>
-		        		<div class="stats-modal-stat-obj-text">Win %</div>
-		        	</div>
-		        	<div class="stats-modal-stat-obj">
-		        		<div id="current-streak"></div>
-		        		<div class="stats-modal-stat-obj-text">Currect Streak</div>
-		        	</div>
-		        	<div class="stats-modal-stat-obj">
-		        		<div id="max-streak"></div>
-		        		<div class="stats-modal-stat-obj-text">Max Streak</div>
-		        	</div>
-		        </div>  
-
-		        <div class="stats-modal-guess-distribution">
-		        	<div class="stats-modal-guess-row-ids">
-		        		<div class="stats-modal-guess-row-val">1</div>
-		        		<div class="stats-modal-guess-row-val">2</div>
-		        		<div class="stats-modal-guess-row-val">3</div>
-		        		<div class="stats-modal-guess-row-val">4</div>
-		        		<div class="stats-modal-guess-row-val">5</div>
-		        		<div class="stats-modal-guess-row-val">6</div>
-		        	</div>
-		        	<div class="stats-modal-guess-row-bars">
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-1">0</div>
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-2">0</div>
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-3">0</div>
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-4">0</div>
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-5">0</div>
-		        		<div class="stats-modal-guess-row-bar" id="stats-r-6">0</div>
-		        	</div>
-		        </div>
-
-		        <div class="stats-modal-share" style="display: none">
-		        	<button class="share-button" id="share-button">Share!</button>
-		        	<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-		        </div>	
-				
-				
-		        <div class="stats-modal-footer">
-	        		Created by A&A (<a href="https://www.linkedin.com/in/abhishekgovindarasu/">Abhishek</a> and <a href="https://www.linkedin.com/in/aaran-guha/">Aaran</a>)
-	        		<br>
-
-	        	</div>
-
-		        <script type="text/javascript">
-		        	document.getElementById("share-button").addEventListener("click", function (event){
-		        		share();
-		        		var tooltip = document.getElementById("myTooltip");
-					  	tooltip.innerHTML = "Copied to clipboard";
-		        	});
-		        </script>	
-	      	</div>
-	    </div>
-	</div>
-
-
-
-	
-
-	<div class="header">
-		<div>
-			<svg id="info-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" viewBox="0 0 16 16">
-			  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-			</svg>
-		</div>
-
-		<script type="text/javascript">
-			var info_modal = document.getElementById("info-modal");
-			var info_btn = document.getElementById("info-icon");
-			var info_span = document.getElementById("info-close");
-
-			// When the user clicks the button, open the modal 
-			info_btn.onclick = function() {
-			  info_modal.style.display = "flex";
-			}
-
-			// When the user clicks on <span> (x), close the modal
-			info_span.onclick = function() {
-			  info_modal.style.display = "none";
-			}
+	<head>
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-88LDCLG3YR"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments); }
+			gtag('js', new Date());
+			
+			gtag('config', 'G-88LDCLG3YR');
 		</script>
-
-		<div>
-			<span id="headline">Touchdown</span>
+		<title>Touchdown</title>
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+		<script type="text/javascript" src="main.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
+		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+		<link rel="stylesheet" type="text/css" href="loading-bar.css" />
+		<script type="text/javascript" src="loading-bar.js"></script>
+		<link rel="stylesheet" href="style.css">
+		<meta name="description"
+			content="Touchdown! Connect NFL players by their mutual teammates. New players to connect every day! Can you connect them in the fewest number of players?" />
+	</head>
+	<body>
+		<div class="loading-screen" id="loading-screen">
+			<div class="loading-header">
+				<span id="loading-header-text">Touchdown</span>
+			</div>
+			<div class="loading-bar-wrapper">
+				<div class="ldBar" id="loading-bar" data-type="fill" data-fill-dir="btt" data-fill-background="#fff2e2"
+					data-fill-width="20"
+					data-img="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg enable-background='new 0 0 58 58' fill='%23d95e00' version='1.1' viewBox='0 0 58 58' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50.554,0h-3.637C21.047,0,0,21.047,0,46.917v3.637C0,54.66,3.34,58,7.446,58h3.637C36.953,58,58,36.953,58,11.083V7.446 C58,3.34,54.66,0,50.554,0z M2,50.554v-3.637C2,22.149,22.149,2,46.917,2h3.637c1.265,0,2.427,0.437,3.353,1.164 c-7.562,2.278-14.041,4.664-19.662,7.667l-2.538-2.538c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.134,2.134 c-1.306,0.756-2.564,1.553-3.778,2.394l-2.942-2.942c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.714,2.714 c-1.167,0.88-2.291,1.811-3.375,2.796l-2.925-2.925c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.886,2.886 c-1.023,1.011-2.009,2.08-2.962,3.21l-2.51-2.51c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.658,2.658 c-0.885,1.138-1.742,2.337-2.57,3.602l-2.674-2.674c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.991,2.991 c-0.762,1.254-1.502,2.569-2.22,3.951l-2.356-2.356c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.829,2.829 c-0.657,1.354-1.296,2.773-1.92,4.251l-2.494-2.494c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l3.085,3.085 c-1.544,3.882-2.99,8.192-4.37,12.983C2.784,53.774,2,52.254,2,50.554z M56,11.083C56,35.851,35.851,56,11.083,56H7.446 c-0.57,0-1.12-0.089-1.637-0.252c1.307-4.579,2.672-8.697,4.112-12.412l2.371,2.371C12.488,45.902,12.744,46,13,46 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.983-2.983c0.616-1.496,1.247-2.917,1.892-4.28l2.677,2.677 C15.488,39.902,15.744,40,16,40c0.256,0,0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.16-3.16 c0.709-1.399,1.436-2.728,2.184-3.988l2.562,2.562C18.488,33.902,18.744,34,19,34s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.9-2.9c0.82-1.282,1.665-2.493,2.536-3.636l2.95,2.95C22.488,28.902,22.744,29,23,29 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.114-3.114c0.949-1.145,1.93-2.218,2.943-3.229l2.757,2.757 C26.488,23.902,26.744,24,27,24s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.725-2.725 c1.087-0.993,2.214-1.92,3.379-2.793l2.932,2.932C31.488,19.902,31.744,20,32,20s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.698-2.698c1.224-0.838,2.493-1.624,3.807-2.365l3.477,3.477C37.488,16.902,37.744,17,38,17 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.056-3.056c5.656-2.93,12.14-5.179,19.673-7.412 C55.754,5.603,56,6.496,56,7.446V11.083z'/%3E%3C/svg%3E%0A"
+					data-img-size="300,300" data-value="0"></div>
+			</div>
+			<div class="loading-footer">
+				<!-- <span id="loading-footer-text">Loading resources<span id="loading-footer-dots"></span></span><br> -->
+			</div>
 		</div>
-
-		<div>
-			<svg id="stats-icon" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="4 4 24 24" width="32" fill="currentColor"><path d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z"></path></svg>
+		<div class="modal" id="info-modal">
+			<div class="modal-content">
+				<header>
+					<div class="close" id="info-close">&times;</div>
+				</header>
+				<div class="modal-text">
+					<div class="modal-header">
+						<header>HOW TO PLAY</header>
+						Connect two NFL players through 6 or fewer mutual teammates.
+					</div>
+					<p>Example: Connect <strong>Drew Brees</strong> to <strong>Aaron Rodgers</strong></p>
+					<div class="info-modal-sample">
+						<div class="cell"> Drew Brees </div>
+						<div class="cell correct"> Brandin Cooks </div>
+						<div class="cell wrong"> Patrick Mahomes </div>
+						<div class="cell correct"> Randall Cobb </div>
+						<div class="cell"> Aaron Rodgers </div>
+					</div>
+					<div class="info-modal-guess-explanation">
+						<div class="info-modal-explanation-cell">
+							<span>Guess 1: <span class="correct">Brandin Cooks</span></span>
+							<div class="info-modal-explanation-reason">
+								Brandon Cooks played with Drew Brees, however, he's never played with Rodgers.
+							</div>
+						</div>
+						<div class="info-modal-explanation-cell">
+							<span>Guess 2: <span class="wrong">Patrick Mahomes</span></span>
+							<div class="info-modal-explanation-reason">
+								Patrick Mahomes never played with Brandon Cooks.
+							</div>
+						</div>
+						<div class="info-modal-explanation-cell">
+							<span>Guess 3: <span class="correct">Randall Cobb</span></span>
+							<div class="info-modal-explanation-reason">
+								Randall Cobb played with Brandin Cooks, and also played with Rodgers.
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<script type="text/javascript">
-			var stats_modal = document.getElementById("stats-modal");
-			var stats_btn = document.getElementById("stats-icon");
-			var stats_span = document.getElementById("stats-close");
-
-			// When the user clicks the button, open the modal 
-			stats_btn.onclick = function() {
-		  		stats_modal.style.display = "flex";
-		  		update_stats_modal();
-			}
-
-			// When the user clicks on <span> (x), close the modal
-			stats_span.onclick = function() {
-			  stats_modal.style.display = "none";
-			}
-
-		</script>
-
-		<script type="text/javascript">
-			// When the user clicks anywhere outside of the modal, close it
-			window.onclick = function(event) {
-				if (event.target == info_modal) {
+		<div class="modal" id="stats-modal" style="display: none">
+			<div class="modal-content">
+				<header>
+					<div class="close" id="stats-close">&times;</div>
+				</header>
+				<div class="modal-text">
+					<div class="stats-modal-shortest-path" style="display: none">
+						<span>Shortest Path: </span>
+						<div class="stats-modal-sp-route" id="p-route-sho"></div>
+						<span>Popular Player Path: </span>
+						<div class="stats-modal-sp-route" id="p-route-pop"></div>
+					</div>
+					<div class="modal-header">
+						<header>Statistics</header>
+						View your game statistics! If this looks off, make sure you are using the same browser when playing.
+					</div>
+					<div class="stats-modal-var-container">
+						<div class="stats-modal-stat-obj">
+							<div id="games-played"></div>
+							<div class="stats-modal-stat-obj-text">Played</div>
+						</div>
+						<div class="stats-modal-stat-obj">
+							<div id="win-percentage"></div>
+							<div class="stats-modal-stat-obj-text">Win %</div>
+						</div>
+						<div class="stats-modal-stat-obj">
+							<div id="current-streak"></div>
+							<div class="stats-modal-stat-obj-text">Currect Streak</div>
+						</div>
+						<div class="stats-modal-stat-obj">
+							<div id="max-streak"></div>
+							<div class="stats-modal-stat-obj-text">Max Streak</div>
+						</div>
+					</div>
+					<div class="stats-modal-guess-distribution">
+						<div class="stats-modal-guess-row-ids">
+							<div class="stats-modal-guess-row-val">1</div>
+							<div class="stats-modal-guess-row-val">2</div>
+							<div class="stats-modal-guess-row-val">3</div>
+							<div class="stats-modal-guess-row-val">4</div>
+							<div class="stats-modal-guess-row-val">5</div>
+							<div class="stats-modal-guess-row-val">6</div>
+						</div>
+						<div class="stats-modal-guess-row-bars">
+							<div class="stats-modal-guess-row-bar" id="stats-r-1">0</div>
+							<div class="stats-modal-guess-row-bar" id="stats-r-2">0</div>
+							<div class="stats-modal-guess-row-bar" id="stats-r-3">0</div>
+							<div class="stats-modal-guess-row-bar" id="stats-r-4">0</div>
+							<div class="stats-modal-guess-row-bar" id="stats-r-5">0</div>
+							<div class="stats-modal-guess-row-bar" id="stats-r-6">0</div>
+						</div>
+					</div>
+					<div class="stats-modal-share" style="display: none">
+						<button class="share-button" id="share-button">Share!</button>
+						<span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+					</div>
+					<div class="stats-modal-footer">
+						Created by A&A (<a href="https://www.linkedin.com/in/abhishekgovindarasu/">Abhishek</a> and <a
+							href="https://www.linkedin.com/in/aaran-guha/">Aaran</a>)
+						<br>
+					</div>
+					<script type="text/javascript">
+						document.getElementById("share-button").addEventListener("click", function (event) {
+							share();
+							var tooltip = document.getElementById("myTooltip");
+							tooltip.innerHTML = "Copied to clipboard";
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="header">
+			<div>
+				<svg id="info-icon" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor"
+					viewBox="0 0 16 16">
+					<path
+						d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+				</svg>
+			</div>
+			<script type="text/javascript">
+				var info_modal = document.getElementById("info-modal");
+				var info_btn = document.getElementById("info-icon");
+				var info_span = document.getElementById("info-close");
+				
+				// When the user clicks the button, open the modal 
+				info_btn.onclick = function () {
+					info_modal.style.display = "flex";
+				}
+				
+				// When the user clicks on <span> (x), close the modal
+				info_span.onclick = function () {
 					info_modal.style.display = "none";
 				}
-				if (event.target == stats_modal) {
+			</script>
+			<div>
+				<span id="headline">Touchdown</span>
+			</div>
+			<div>
+				<svg id="stats-icon" xmlns="http://www.w3.org/2000/svg" height="32" viewBox="4 4 24 24" width="32"
+					fill="currentColor">
+					<path
+						d="M20.6666 14.8333V5.5H11.3333V12.5H4.33325V26.5H27.6666V14.8333H20.6666ZM13.6666 7.83333H18.3333V24.1667H13.6666V7.83333ZM6.66659 14.8333H11.3333V24.1667H6.66659V14.8333ZM25.3333 24.1667H20.6666V17.1667H25.3333V24.1667Z">
+					</path>
+				</svg>
+			</div>
+			<script type="text/javascript">
+				var stats_modal = document.getElementById("stats-modal");
+				var stats_btn = document.getElementById("stats-icon");
+				var stats_span = document.getElementById("stats-close");
+				
+				// When the user clicks the button, open the modal 
+				stats_btn.onclick = function () {
+					stats_modal.style.display = "flex";
+					update_stats_modal();
+				}
+				
+				// When the user clicks on <span> (x), close the modal
+				stats_span.onclick = function () {
 					stats_modal.style.display = "none";
 				}
-			}
-		</script>
-	</div>
-
-	<div class="main">
-		<div class="game-prompt">
-			<span>Connect <span id="start-player" class="emphasize">Start Player</span> to <span id="end-player" class="emphasize">End Player</span> through mutual teammates.</span>
+				
+			</script>
+			<script type="text/javascript">
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function (event) {
+					if (event.target == info_modal) {
+						info_modal.style.display = "none";
+					}
+					if (event.target == stats_modal) {
+						stats_modal.style.display = "none";
+					}
+				}
+			</script>
 		</div>
-
-		<div class="game-table">
-			<div id="start-pt">
-				<div class="cell" id="p-start">Person Start</div>
+		<div class="main">
+			<div class="game-prompt">
+				<span>Connect <span id="start-player" class="emphasize">Start Player</span> to <span id="end-player"
+					class="emphasize">End Player</span> through mutual teammates.</span>
 			</div>
-
-			<div id="guess-pt">
+			<div class="game-table">
+				<div id="start-pt">
+					<div class="cell" id="p-start">Person Start</div>
+				</div>
+				<div id="guess-pt">
+				</div>
+				<div id="next-pt">
+					<div class="cell" id="ui" contenteditable="plaintext-only" data-text="Enter player name here"
+						data-gramm="false" data-gramm_editor="false" data-enable-grammarly="false"></div>
+					<div class="autocomplete-wrapper" id="autocomplete-wrapper"></div>
+				</div>
+				<div id="end-pt">
+					<tr>
+						<td>
+							<div class="cell" id="p-end">Person End</div>
+						</td>
+					</tr>
+				</div>
 			</div>
-
-			<div id="next-pt">	
-				<div class="cell" id="ui" contenteditable=true data-text="Enter player name here" data-gramm="false" data-gramm_editor="false"data-enable-grammarly="false"></div>
-				<div class="autocomplete-wrapper" id="autocomplete-wrapper"></div>
-			</div>
- 
-			<div id="end-pt">
-				<tr>
-					<td><div class="cell" id="p-end">Person End</div></td>
-				</tr>
+			<div class="remaining-guesses" id="rem-guesses">
+				<span><span id="remaining-guess-cnt">6</span> guesses remaining</span>
 			</div>
 		</div>
-
-		<div class="remaining-guesses" id="rem-guesses">
-			<span><span id="remaining-guess-cnt">6</span> guesses remaining</span>
+		<div class="footer">
 		</div>
-	</div>
-
-
-	<div class="footer">
-
-	</div>
-</body>
-
+	</body>
 </html>

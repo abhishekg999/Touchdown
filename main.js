@@ -11,8 +11,8 @@ let MAXGUESSES = 6;
 let popular_players = [10586, 3011, 10081, 5882, 11075, 2503, 4044, 8357, 71, 10244, 8611, 6194, 7480, 11222, 8019, 2769, 5578, 10447, 6229, 5543, 9906, 7963, 5983, 2484, 2484, 1900, 3082, 6360, 11048, 341, 6186, 330, 7850, 696, 6022, 55, 9531, 7143, 10230, 2458, 6876, 6311, 2449, 9725, 3952, 116, 9318, 2493, 3, 6859, 1662, 7780, 4605, 1070, 8249, 4446, 6949, 7701, 9902, 8027, 4908, 8132, 4441, 3274, 5176, 4359, 2925, 7592, 1513, 11028, 11459, 2226, 7833, 3381, 5023, 10364, 1516, 3054, 11041, 5443, 1844, 6889, 2327, 10116, 2327, 6889, 309, 4850, 6534, 3936, 7948, 3314, 3181, 9629, 6126, 1072, 4231, 3934, 7897, 10726, 3738, 8442, 11446, 7633, 6768, 2523, 11, 4072, 8144, 9311, 25, 3740, 698, 9449, 6572, 6501, 7739, 9711, 2242, 2726, 2045, 8337, 4581, 7109, 2417, 2930, 11297, 6104, 8869, 7373, 9244, 1791, 8893, 1381, 8965, 752, 10032, 6267, 306, 4793, 2741, 2133, 7824, 581, 10908, 11142, 2406, 4096, 1971, 10878, 5450, 8715, 8989, 1224, 10616, 5672, 3086, 6914, 8913, 10951, 10182, 3671, 6833, 7019, 9221, 421, 2189, 1522, 2910, 10729, 6186];
 
 
-let Statistics = {"gamesPlayed": 0, "gamesWon": 0, "gameStats": {"1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "fail": 0}, "currentStreak": 0, "maxStreak": 0};
-let CurrentGame = {"id" : btoa(getDate()), "guesses": [], "finished": false, "won": false}
+let Statistics = { "gamesPlayed": 0, "gamesWon": 0, "gameStats": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0, "6": 0, "fail": 0 }, "currentStreak": 0, "maxStreak": 0 };
+let CurrentGame = { "id": btoa(getDate()), "guesses": [], "finished": false, "won": false }
 
 let DONOTTOUCHTHIS = "";
 
@@ -35,50 +35,50 @@ function cyrb128(str) {
     h2 = Math.imul(h4 ^ (h2 >>> 22), 2869860233);
     h3 = Math.imul(h1 ^ (h3 >>> 17), 951274213);
     h4 = Math.imul(h2 ^ (h4 >>> 19), 2716044179);
-    return [(h1^h2^h3^h4)>>>0, (h2^h1)>>>0, (h3^h1)>>>0, (h4^h1)>>>0];
+    return [(h1 ^ h2 ^ h3 ^ h4) >>> 0, (h2 ^ h1) >>> 0, (h3 ^ h1) >>> 0, (h4 ^ h1) >>> 0];
 }
 
 function sfc32(a, b, c, d) {
-    return function() {
-      a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0; 
-      var t = (a + b) | 0;
-      a = b ^ b >>> 9;
-      b = c + (c << 3) | 0;
-      c = (c << 21 | c >>> 11);
-      d = d + 1 | 0;
-      t = t + d | 0;
-      c = c + t | 0;
-      return (t >>> 0) / 4294967296;
+    return function () {
+        a >>>= 0; b >>>= 0; c >>>= 0; d >>>= 0;
+        var t = (a + b) | 0;
+        a = b ^ b >>> 9;
+        b = c + (c << 3) | 0;
+        c = (c << 21 | c >>> 11);
+        d = d + 1 | 0;
+        t = t + d | 0;
+        c = c + t | 0;
+        return (t >>> 0) / 4294967296;
     }
 }
 
-function daysPassed(){
+function daysPassed() {
     var date1 = new Date("9/17/2022");
     var today = new Date(getDate());
 
-    return parseInt((today.getTime() - date1.getTime())/(1000 * 3600 * 24));
+    return parseInt((today.getTime() - date1.getTime()) / (1000 * 3600 * 24));
 }
 
-function getPsrand(){
+function getPsrand() {
     let today;
     today = getDate();
-    
-    seed = cyrb128(today); 
+
+    seed = cyrb128(today);
     return sfc32(seed[0], seed[1], seed[2], seed[3]);
 }
 
-var randomChoice = function(arr, rfunc) {
+var randomChoice = function (arr, rfunc) {
     return arr[Math.floor(arr.length * rfunc())];
 }
 
-function setTodayPlayers(){
+function setTodayPlayers() {
     rand = getPsrand(); // get today's random gen function
     StartPlayer = randomChoice(popular_players, rand);
     console.log("Start Player: " + StartPlayer);
 
     EndPlayer = randomChoice(popular_players, rand);
 
-    while (EndPlayer === StartPlayer || PlayerTeammates[StartPlayer].includes(EndPlayer)){
+    while (EndPlayer === StartPlayer || PlayerTeammates[StartPlayer].includes(EndPlayer)) {
         EndPlayer = randomChoice(popular_players, rand);
     }
     console.log("End Player: " + EndPlayer);
@@ -99,7 +99,7 @@ async function loadPlayerTeammates() {
 }
 
 
-function renderGuess(id, acc, num){
+function renderGuess(id, acc, num) {
     let inner_div = document.createElement("div");
     inner_div.id = "guess-" + num;
     inner_div.classList.add('cell')
@@ -112,7 +112,7 @@ function renderGuess(id, acc, num){
 
     inner_div.innerHTML = PlayerIds[id]
 
-    document.getElementById('guess-pt').appendChild(inner_div)    
+    document.getElementById('guess-pt').appendChild(inner_div)
 }
 
 function addGuess(id, acc, num) {
@@ -127,10 +127,10 @@ function addGuess(id, acc, num) {
 }
 
 
-function getRemainingGuesses(){
+function getRemainingGuesses() {
     return MAXGUESSES - CurrentGame["guesses"].length;
 }
-function updateGuessCnt(){
+function updateGuessCnt() {
     document.getElementById("remaining-guess-cnt").innerHTML = getRemainingGuesses();
 }
 
@@ -141,21 +141,21 @@ function getKeyByValue(object, value) {
 function generate_share_text() {
     share_str = "Touchdown #" + daysPassed() + "\n";
     share_str += PlayerIds[StartPlayer] + " → " + PlayerIds[EndPlayer] + "\n🏈";
-    for (var i in CurrentGame["guesses"]){
-        if (CurrentGame["guesses"][i][1] === false){
+    for (var i in CurrentGame["guesses"]) {
+        if (CurrentGame["guesses"][i][1] === false) {
             share_str += '🟥';
         } else {
             share_str += '🟩';
         }
     }
-    for (i = 0; i < 6 - CurrentGame["guesses"].length; i++){
+    for (i = 0; i < 6 - CurrentGame["guesses"].length; i++) {
         share_str += '⬜';
     }
     share_str += "\nhttps://touchdown.life";
     return share_str;
 }
 
-function share(){
+function share() {
     text = generate_share_text();
     navigator.clipboard.writeText(text);
 }
@@ -164,25 +164,25 @@ function share(){
 function update_stats_modal() {
     document.getElementById('games-played').innerHTML = Statistics['gamesPlayed'];
 
-    if (Statistics['gamesPlayed'] === 0){
+    if (Statistics['gamesPlayed'] === 0) {
         document.getElementById('win-percentage').innerHTML = "0%"
     } else {
-        document.getElementById('win-percentage').innerHTML = Math.round(Statistics['gamesWon']/Statistics['gamesPlayed'] * 100) + "%";
+        document.getElementById('win-percentage').innerHTML = Math.round(Statistics['gamesWon'] / Statistics['gamesPlayed'] * 100) + "%";
     }
     document.getElementById('current-streak').innerHTML = Statistics['currentStreak'];
     document.getElementById('max-streak').innerHTML = Statistics['maxStreak'];
 
     var maxval = Math.max(...Object.values(Statistics["gameStats"]));
-    if (maxval === 0){
-        for (var i = 1; i <= 6; i++){
+    if (maxval === 0) {
+        for (var i = 1; i <= 6; i++) {
             document.getElementById('stats-r-' + i).innerHTML = Statistics["gameStats"][i];
             var s_w_calc = 8;
             document.getElementById('stats-r-' + i).style.width = s_w_calc + "%";
         }
     } else {
-        for (var i = 1; i <= 6; i++){
+        for (var i = 1; i <= 6; i++) {
             document.getElementById('stats-r-' + i).innerHTML = Statistics["gameStats"][i];
-            var s_w_calc = (92 * Statistics["gameStats"][i]/maxval) + 8;
+            var s_w_calc = (92 * Statistics["gameStats"][i] / maxval) + 8;
             document.getElementById('stats-r-' + i).style.width = s_w_calc + "%";
         }
     }
@@ -194,21 +194,21 @@ function update_stats_modal() {
     setPaths();
 }
 
-function bfs_pop(pop_list){
+function bfs_pop(pop_list) {
     var explored = [];
     var queue = [[StartPlayer]];
-    if (StartPlayer === EndPlayer){
+    if (StartPlayer === EndPlayer) {
         return [start];
     }
     while (queue) {
         var path = queue.shift();
         var node = path[path.length - 1];
 
-        if (!explored.includes(node)){
+        if (!explored.includes(node)) {
             var adjs = PlayerTeammates[node];
             for (adj_id in adjs) {
                 var adj = adjs[adj_id];
-                if (pop_list.includes(adj)){
+                if (pop_list.includes(adj)) {
                     var new_path = [...path];
                     new_path.push(adj);
                     queue.push(new_path);
@@ -221,20 +221,20 @@ function bfs_pop(pop_list){
             explored.push(node);
         }
     }
-    return null; 
+    return null;
 }
 
-function bfs(){
+function bfs() {
     var explored = [];
     var queue = [[StartPlayer]];
-    if (StartPlayer === EndPlayer){
+    if (StartPlayer === EndPlayer) {
         return [start];
     }
     while (queue) {
         var path = queue.shift();
         var node = path[path.length - 1];
 
-        if (!explored.includes(node)){
+        if (!explored.includes(node)) {
             var adjs = PlayerTeammates[node];
             for (adj_id in adjs) {
                 var adj = adjs[adj_id];
@@ -252,48 +252,48 @@ function bfs(){
 }
 
 
-function syncLocalStorage(){
+function syncLocalStorage() {
     localStorage.setItem("CurrentGame", JSON.stringify(CurrentGame));
     localStorage.setItem("Statistics", JSON.stringify(Statistics));
 }
 
-function setPaths(){
+function setPaths() {
     var pos_path = bfs_pop(popular_players);
     var sho_path = bfs();
 
-    if (pos_path === null){
+    if (pos_path === null) {
         document.getElementById("p-route-pop").style.display = "none";
     }
 
-    if (sho_path === null){
+    if (sho_path === null) {
         document.getElementById("p-route-sho").style.display = "none";
     }
 
     var pos_string = "<span>" + PlayerIds[StartPlayer] + " → ";
-    for (i = 1; i < pos_path.length - 1; i++){
+    for (i = 1; i < pos_path.length - 1; i++) {
         pos_string += "<span class=\"correct\">" + PlayerIds[pos_path[i]] + "</span> → ";
     }
-    pos_string += PlayerIds[EndPlayer] + "</span>";    
+    pos_string += PlayerIds[EndPlayer] + "</span>";
 
     var sho_string = "<span>" + PlayerIds[StartPlayer] + " → ";
-    for (i = 1; i < sho_path.length - 1; i++){
+    for (i = 1; i < sho_path.length - 1; i++) {
         sho_string += "<span class=\"correct\">" + PlayerIds[sho_path[i]] + "</span> → ";
     }
-    sho_string += PlayerIds[EndPlayer] + "</span>";    
+    sho_string += PlayerIds[EndPlayer] + "</span>";
 
     document.getElementById("p-route-pop").innerHTML = pos_string;
     document.getElementById("p-route-sho").innerHTML = sho_string;
 
 }
 
-function winStatic(){
+function winStatic() {
     document.getElementById("next-pt").style.setProperty("display", "none", "important");
     document.getElementsByClassName("stats-modal-share")[0].style.setProperty("display", "block");
     document.getElementsByClassName("stats-modal-shortest-path")[0].style.setProperty("display", "block");
     //document.getElementById("path-phrase").innerHTML = "Alternate";
 }
 
-function loseStatic(){
+function loseStatic() {
     document.getElementById("next-pt").style.setProperty("display", "none", "important");
     document.getElementsByClassName("stats-modal-share")[0].style.setProperty("display", "block");
     document.getElementsByClassName("stats-modal-shortest-path")[0].style.setProperty("display", "block");
@@ -312,15 +312,15 @@ async function init() {
     }
 
     setTodayPlayers();
-    if (localStorage.getItem("CurrentGame") !== null){
-        CurrentGame = JSON.parse(localStorage.getItem("CurrentGame")); 
-        if (CurrentGame["id"] !== btoa(getDate())){
-            CurrentGame = {"id" : btoa(getDate()), "guesses": [], "finished": false, "won": false};
-        } 
+    if (localStorage.getItem("CurrentGame") !== null) {
+        CurrentGame = JSON.parse(localStorage.getItem("CurrentGame"));
+        if (CurrentGame["id"] !== btoa(getDate())) {
+            CurrentGame = { "id": btoa(getDate()), "guesses": [], "finished": false, "won": false };
+        }
         document.getElementById("info-modal").style.display = "none";
     }
 
-    if (localStorage.getItem("Statistics") !== null){
+    if (localStorage.getItem("Statistics") !== null) {
         Statistics = JSON.parse(localStorage.getItem("Statistics"));
         document.getElementById("info-modal").style.display = "none";
     }
@@ -339,26 +339,26 @@ async function init() {
     updateGuessCnt();
 
 
-    if (CurrentGame["finished"]){
-        if (CurrentGame["won"]){ //MAKE SURE TO UPDATE WIN CODE HERE AS WELL
+    if (CurrentGame["finished"]) {
+        if (CurrentGame["won"]) { //MAKE SURE TO UPDATE WIN CODE HERE AS WELL
             winStatic();
-        } 
-        if (!CurrentGame["won"]){
+        }
+        if (!CurrentGame["won"]) {
             loseStatic();
         }
     }
-   
+
 
     //initialized
-    setTimeout(function(){
-        loading.set(100);  
-        setTimeout(function(){
+    setTimeout(function () {
+        loading.set(100);
+        setTimeout(function () {
             document.getElementById("loading-screen").style.display = "none";
-            autocomplete(document.getElementById("ui"), player_names); 
-        }, 1000);  
+            autocomplete(document.getElementById("ui"), player_names);
+        }, 1000);
     }, 800);
-    
-    
+
+
 }
 
 function game_end(won) {
@@ -366,13 +366,13 @@ function game_end(won) {
     CurrentGame["won"] = won;
 
     Statistics["gamesPlayed"]++;
-    if (won){
+    if (won) {
         winStatic();
         Statistics["currentStreak"]++;
         Statistics["gamesWon"]++;
-        if (Statistics["currentStreak"] > Statistics["maxStreak"]){
+        if (Statistics["currentStreak"] > Statistics["maxStreak"]) {
             Statistics["maxStreak"] = Statistics["currentStreak"];
-        } 
+        }
         Statistics["gameStats"][CurrentGame["guesses"].length]++;
     } else {
         loseStatic();
@@ -381,7 +381,7 @@ function game_end(won) {
     }
 
     syncLocalStorage();
-    setTimeout(function(){
+    setTimeout(function () {
         stats_modal.style.display = "flex";
         update_stats_modal();
     }, 1300);
@@ -390,7 +390,7 @@ function game_end(won) {
 function autocomplete(inp, arr) {
     // W3Schools autocomplete
     var currentFocus;
-    inp.addEventListener("input", function(e) {
+    inp.addEventListener("input", function (e) {
 
         var a, b, i;
         var val = inp.innerHTML;
@@ -414,12 +414,12 @@ function autocomplete(inp, arr) {
         var result_count = 0;
         for (i = 0; i < arr.length && result_count < 10; i++) {
             if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
-                result_count++; 
+                result_count++;
                 b = document.createElement("DIV");
                 b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
                 b.innerHTML += arr[i].substr(val.length);
                 b.innerHTML += "<input type='hidden' value='" + getKeyByValue(PlayerIds, arr[i]) + "'>";
-                b.addEventListener("click", function(e) { // add onclick event listener for each div
+                b.addEventListener("click", function (e) { // add onclick event listener for each div
                     console.log("Event triggered")
                     /*insert the value for the autocomplete text field:*/
                     var input_id = parseInt(this.getElementsByTagName("input")[0].value)
@@ -427,21 +427,21 @@ function autocomplete(inp, arr) {
                     closeAllLists();
 
                     // check if player is correct            
-	                if (PlayerTeammates[PrevPlayer].includes(input_id)) {
-	                    PrevPlayer = parseInt(input_id);
-	                    addGuess(input_id, true, CurrentGame["guesses"].length - 1)
-    	                if (PlayerTeammates[PrevPlayer].includes(EndPlayer)) { //if player won remove next field box
+                    if (PlayerTeammates[PrevPlayer].includes(input_id)) {
+                        PrevPlayer = parseInt(input_id);
+                        addGuess(input_id, true, CurrentGame["guesses"].length - 1)
+                        if (PlayerTeammates[PrevPlayer].includes(EndPlayer)) { //if player won remove next field box
                             game_end(true);
-    	                }
+                        }
 
-	                } else {
-	                    addGuess(input_id, false, CurrentGame["guesses"].length - 1)
-	                }
+                    } else {
+                        addGuess(input_id, false, CurrentGame["guesses"].length - 1)
+                    }
 
                     updateGuessCnt();
-	                inp.innerHTML = "";
+                    inp.innerHTML = "";
 
-                    if (getRemainingGuesses() <= 0){
+                    if (getRemainingGuesses() <= 0) {
                         game_end(false);
                     }
                 });
@@ -450,7 +450,7 @@ function autocomplete(inp, arr) {
         }
     });
 
-    inp.addEventListener("keydown", function(e) {
+    inp.addEventListener("keydown", function (e) {
         var x = document.getElementById(this.id + "autocomplete-list");
         if (x) x = x.getElementsByTagName("div");
         if (e.keyCode == 40) {
@@ -490,14 +490,14 @@ function autocomplete(inp, arr) {
         }
     }
 
-    document.addEventListener("click", function(e) {
+    document.addEventListener("click", function (e) {
         closeAllLists(e.target);
     });
 }
 
 
 
-window.onload = function() {
+window.onload = function () {
     init();
     console.log("loaded");
 }
