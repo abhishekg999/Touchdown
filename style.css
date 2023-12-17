@@ -484,7 +484,7 @@ a:hover {
 .cell {
 	width: 100%;
 	max-width: 678px;
-	max-height: 40px;
+	min-height: 40px;
 	line-height:40px;
 	overflow-x: hidden;
 	overflow-y: hidden;
@@ -502,6 +502,9 @@ a:hover {
 	font-family: 'Open Sans';font-size: 14px;
 	font-weight: 600;
 	color: white;
+
+	user-select: text;
+	-moz-user-select: text;
 
 }
 

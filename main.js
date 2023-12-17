@@ -269,12 +269,12 @@ function syncLocalStorage() {
 function addValuesToListIfNotExist(list, valuesToAdd) {
     const uniqueSet = new Set(list);
     for (const value of valuesToAdd) {
-      if (!uniqueSet.has(value)) {
-        uniqueSet.add(value);
-      }
+        if (!uniqueSet.has(value)) {
+            uniqueSet.add(value);
+        }
     }
     return Array.from(uniqueSet);
-  }
+}
 
 function setPaths() {
     let pos_path;
@@ -329,8 +329,14 @@ function loseStatic() {
 }
 
 async function init() {
-    var loading = new ldBar("#loading-bar")
-    loading.set(24);
+    var loading = new ldBar("#loading-bar", {
+        "type": "fill",
+        "fill-dir": "btt",
+        "fill-background": "#fff2e2",
+        "fill-width": 20,
+        "img-size": "300,300",
+        "value": 0
+    });
     await loadPlayerId();
     await loadPlayerTeammates();
     await loadPlayerDefaultDates();
@@ -353,7 +359,7 @@ async function init() {
         Statistics = JSON.parse(localStorage.getItem("Statistics"));
         document.getElementById("info-modal").style.display = "none";
     }
-    syncLocalStorage(); //maybe remove this?
+    syncLocalStorage();
 
     document.getElementById("p-start").innerHTML = PlayerIds[StartPlayer];
     document.getElementById("p-end").innerHTML = PlayerIds[EndPlayer];
@@ -369,7 +375,7 @@ async function init() {
 
 
     if (CurrentGame["finished"]) {
-        if (CurrentGame["won"]) { //MAKE SURE TO UPDATE WIN CODE HERE AS WELL
+        if (CurrentGame["won"]) {
             winStatic();
         }
         if (!CurrentGame["won"]) {
@@ -377,15 +383,14 @@ async function init() {
         }
     }
 
-
     //initialized
     setTimeout(function () {
-        loading.set(100);
+        loading.set(100, true);
         setTimeout(function () {
             document.getElementById("loading-screen").style.display = "none";
             autocomplete(document.getElementById("ui"), player_names);
-        }, 1000);
-    }, 800);
+        }, 2000);
+    }, 700);
 
 
 }
@@ -422,7 +427,7 @@ function autocomplete(inp, arr) {
     inp.addEventListener("input", function (e) {
 
         var a, b, i;
-        var val = inp.innerHTML;
+        var val = inp.innerText;
         closeAllLists();
 
         if (!val) {
@@ -432,7 +437,7 @@ function autocomplete(inp, arr) {
 
 
         // create auto complete list 
-        a = document.createElement("DIV");
+        a = document.createElement("div");
         a.setAttribute("id", this.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
 
@@ -444,7 +449,7 @@ function autocomplete(inp, arr) {
         for (i = 0; i < arr.length && result_count < 10; i++) {
             if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
                 result_count++;
-                b = document.createElement("DIV");
+                b = document.createElement("div");
                 b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
                 b.innerHTML += arr[i].substr(val.length);
                 b.innerHTML += "<input type='hidden' value='" + getKeyByValue(PlayerIds, arr[i]) + "'>";
