@@ -1,636 +1,625 @@
-html, body {
-	background-color: #101110;
-	margin:0 auto;
-	max-width: 100%;
-	height: 100%;
-	min-height: 100vh;
-	position: relative;
+html,
+body {
+    background-color: #101110;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    position: relative;
 }
 
 .loading-screen {
-	position: fixed;
-	padding: 0;
-	margin: 0;
-	background-color: #101110;
-	z-index: 999;
-	width: 100%;
-	height: 100%;
+    position: fixed;
+    padding: 0;
+    margin: 0;
+    background-color: #101110;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
 }
 
 .loading-bar-wrapper {
-	display: inline-block;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -40%);
-	font-size: 0;
-	color: transparent;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -40%);
+    font-size: 0;
+    color: transparent;
 }
 
 .loading-header {
-	position: absolute;
-	top: 6%;
-	left: 0;
-	width: 100%;
-	text-align: center;
-	font-family: 'Orbitron';font-size: 54px;
-	color: white;
+    position: absolute;
+    top: 6%;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: "Orbitron";
+    font-size: 54px;
+    color: white;
 }
 
 .loading-footer {
-	position: absolute;
-	bottom: 10%;
-	left: 0;
-	width: 100%;
-	text-align: center;
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    width: 100%;
+    text-align: center;
 
-	font-family: 'Open Sans';font-size: 16px;
-	color: grey;
+    font-family: "Open Sans";
+    font-size: 16px;
+    color: grey;
 }
 
 .header {
-	position: relative;
-	height: 72px;
-	max-width: 95%;
-	margin: 0 auto;
-	background-color: #101110;
-	border-bottom: 1px solid #585959;
+    position: relative;
+    height: 72px;
+    max-width: 95%;
+    margin: 0 auto;
+    background-color: #101110;
+    border-bottom: 1px solid #585959;
 
-	display: flex;
-	justify-content: flex-start;
-	margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
 }
 
 .header div {
-	position: relative;
-	text-align: center;
-	width: 33%;
-
+    position: relative;
+    text-align: center;
+    width: 33%;
 }
 
 .fl {
-	float: left;
+    float: left;
 }
 
 .fr {
-	float: right;
+    float: right;
 }
 
 #headline {
-	margin: 0;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -45%);
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
 
-	font-family: 'Orbitron';font-size: 32px;
-	letter-spacing: 1px;
-	font-weight: bolder;
-	color: white;
+    font-family: "Orbitron";
+    font-size: 32px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+    color: white;
 
-	flex-grow: 2;
+    flex-grow: 2;
 }
 
 .header div svg {
-	margin: 0;
-	position: absolute;
-	color: white;	
+    margin: 0;
+    position: absolute;
+    color: white;
 }
 
 #info-icon {
-	top: 50%;
-	left: 20%;
-	transform: translate(-50%, -45%);
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -45%);
 
-	flex-grow: 1;
+    flex-grow: 1;
 }
 
 #stats-icon {
-	top: 50%;
-	left: 80%;
-	transform: translate(-50%, -45%);
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -45%);
 
-	flex-grow: 1;
-	justify-content: flex-end;
+    flex-grow: 1;
+    justify-content: flex-end;
 }
-
 
 #info-icon:hover,
 #info-icon:focus {
-	color: grey;	
+    color: grey;
 }
 
 #stats-icon:hover,
 #stats-icon:focus {
-	color: grey;	
+    color: grey;
 }
 
 .modal {
-	position: fixed;
-	left: 0;
-	top: 0;
-	z-index: 1;
-	width: 100%;
-	height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
 
-	background-color: rgb(0,0,0); 
-	background-color: rgba(0,0,0,0.6);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.6);
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-
-
 .close {
-	color: #aaaaaa;
-	font-size: 34px;
-	font-weight: bold;
-	display: block;
-	position: absolute;
+    color: #aaaaaa;
+    font-size: 34px;
+    font-weight: bold;
+    display: block;
+    position: absolute;
 
-	top: 15px;
-	right: 15px;
+    top: 15px;
+    right: 15px;
 }
 
 .close:hover,
 .close:focus {
-	color: #ffffff;
-	text-decoration: none;
-	cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-
 ::-webkit-scrollbar {
-  width: 13px;
+    width: 13px;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #d6dee1;
-  border-radius: 13px;
-  border: 3px solid transparent;
-  background-clip: content-box;
+    background-color: #d6dee1;
+    border-radius: 13px;
+    border: 3px solid transparent;
+    background-clip: content-box;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #a8bbbf;
+    background-color: #a8bbbf;
 }
-
 
 .modal-header {
-	border-bottom: 1px solid grey;
-	text-align: center;
+    border-bottom: 1px solid grey;
+    text-align: center;
 
-	padding-bottom: 12px;
-	margin-bottom: 4px;
+    padding-bottom: 12px;
+    margin-bottom: 4px;
 }
 
-.modal-content { 
-	background-color: black;
-	margin: 0 auto;
-	padding: 20px;
-	border: 1px solid #888;
-	width: 85%;
-	display: block;
+.modal-content {
+    background-color: black;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 85%;
+    display: block;
 
-	max-height: 100%;
-	max-width: 512px;
+    max-height: 100%;
+    max-width: 512px;
 
-	overflow-y: scroll;
-	box-sizing: border-box;
+    overflow-y: scroll;
+    box-sizing: border-box;
 
-	position: relative;
+    position: relative;
 }
 
 .modal-text {
-	display: block;
-	font-family: 'Open Sans';font-size: 13px;
-	color: white;
-
+    display: block;
+    font-family: "Open Sans";
+    font-size: 13px;
+    color: white;
 }
 
 .modal-text header {
-	text-align: center;
-	font-size: 24px;
-	padding-bottom: 15px;
-	font-weight: 900;
+    text-align: center;
+    font-size: 24px;
+    padding-bottom: 15px;
+    font-weight: 900;
 }
 .modal-text p {
-	text-align: center;
+    text-align: center;
 }
 
 .info-modal-sample {
-	margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .info-modal-sample > div {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .info-modal-explanation-cell {
-	margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .info-modal-explanation-cell span {
-	color: yellow;
+    color: yellow;
 }
 
 .stats-modal-shortest-path {
-	text-align: center;
-	font-size: 16px;
-	font-weight: 800;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
 }
 
 .stats-modal-sp-route {
-	font-size: 14px;
-	font-weight: 400;
-	font-style: italic;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: italic;
 
-	margin-bottom: 8px;
+    margin-bottom: 8px;
 }
 
 .stats-modal-var-container {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	padding-top: 5px;
-	padding-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding-top: 5px;
+    padding-bottom: 20px;
 }
 
 .stats-modal-stat-obj {
-	width: 70px;
-	height: 90px;
-	position: relative;
-	font-size: 30px;
-	text-align: center;
+    width: 70px;
+    height: 90px;
+    position: relative;
+    font-size: 30px;
+    text-align: center;
 
-	display: inline-block;
+    display: inline-block;
 }
 
 .stats-modal-stat-obj-text {
-	position: absolute;
-	left: 0%;
-	bottom: 0%;
-	width: 70px;
-	height: 50px;
-	font-size: 12px;
+    position: absolute;
+    left: 0%;
+    bottom: 0%;
+    width: 70px;
+    height: 50px;
+    font-size: 12px;
 }
 
 .stats-modal-guess-distribution {
-	text-align: center;
-	width: 100%;	
-	height: 200px;
-	background-color: transparent;
+    text-align: center;
+    width: 100%;
+    height: 200px;
+    background-color: transparent;
 
-	display: flex;
-	flex-direction: row;
-	justify-content: flex-start;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 
-	font-size: 16px;
+    font-size: 16px;
 
-	overflow-y: hidden;
-	padding-bottom: 5px;
+    overflow-y: hidden;
+    padding-bottom: 5px;
 }
 
 .stats-modal-guess-row-ids {
-	height: 100%;
-	width: 10%;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+    height: 100%;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
-	background-color: transparent;
+    background-color: transparent;
 }
 
 .stats-modal-guess-row-val {
-	height: 12%;
-	text-align: center;
-	justify-items: center;
+    height: 12%;
+    text-align: center;
+    justify-items: center;
 }
 
 .stats-modal-guess-row-bars {
-	height: 100%;
-	width: 90%;
+    height: 100%;
+    width: 90%;
 
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: transparent;
 }
 
 .stats-modal-guess-row-bar {
-	height: 12%;
-	background-color: grey;
-	text-align: right;
+    height: 12%;
+    background-color: grey;
+    text-align: right;
 
-	box-sizing: border-box;
-	padding-right: 5px;
+    box-sizing: border-box;
+    padding-right: 5px;
 
-	width: 8%;
+    width: 8%;
 }
 
 .stats-modal-share {
-	padding-top: 15px;
-	text-align: center;
-	position: relative;
-  display: inline-block;
-  flex-basis: auto
-
-
+    padding-top: 15px;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    flex-basis: auto;
 }
 
 .stats-modal-share .tooltiptext {
-  visibility: hidden;
-  width: 140px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -75px;
-  opacity: 0;
-  transition: opacity 0.3s;
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .stats-modal-share .tooltiptext::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
 }
 
 .share-button:hover ~ .tooltiptext {
-  visibility: visible;
-  opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
-
 .share-button {
-  background-color: #FFFFFF;
-  border: 1px solid rgb(209,213,219);
-  border-radius: .5rem;
-  box-sizing: border-box;
-  color: #111827;
-  font-size: .875rem;
-  font-weight: 600;
-  line-height: 1.25rem;
-  padding: .75rem 1rem;
-  text-align: center;
-  text-decoration: none #D1D5DB solid;
-  text-decoration-thickness: auto;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  border: 1px solid black;
+    background-color: #ffffff;
+    border: 1px solid rgb(209, 213, 219);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    color: #111827;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25rem;
+    padding: 0.75rem 1rem;
+    text-align: center;
+    text-decoration: none #d1d5db solid;
+    text-decoration-thickness: auto;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    border: 1px solid black;
 }
 
 .share-button:hover {
-  background-color: rgb(200, 200, 200);
+    background-color: rgb(200, 200, 200);
 }
 
 .share-button:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
+    outline: 2px solid transparent;
+    outline-offset: 2px;
 }
 
 .share-button:focus-visible {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .stats-modal-footer {
-	margin-top: 15px;
-	padding-top: 15px;
-	text-align: center;
-	border-top: 1px solid grey;
+    margin-top: 15px;
+    padding-top: 15px;
+    text-align: center;
+    border-top: 1px solid grey;
 }
 
 a:link {
-  color: green;
+    color: green;
 }
 
 /* visited link */
 a:visited {
-  color: green;
+    color: green;
 }
 
 /* mouse over link */
 a:hover {
-  color: blue;
+    color: blue;
 }
 
-
 .main {
-	position: relative;
-	width: 85%;
-	margin: auto;
-	background-color: rgba(0, 0, 0, 0.0);
+    position: relative;
+    width: 85%;
+    margin: auto;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .game-prompt {
-	display: flex;
-	justify-content: center;
-	color: #ffffff;
-	font-family: 'Open Sans';font-size: 16px;
-	padding-top: 20px;
-	padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 16px;
+    padding-top: 20px;
+    padding-bottom: 10px;
 
-	overflow-x: hidden;
-	text-align: center;
+    overflow-x: hidden;
+    text-align: center;
 }
 
 .remaining-guesses {
-	display: flex;
-	justify-content: center;
-	color: orangered;
-	font-family: 'Open Sans';font-size: 14px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    color: orangered;
+    font-family: "Open Sans";
+    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 
-	overflow-x: hidden;
-	text-align: center;
+    overflow-x: hidden;
+    text-align: center;
 }
 
 .emphasize {
-	color: yellow;
+    color: yellow;
 }
 
-
 .game-table {
-	margin:0 auto;
-	padding-top: 15px;	
-	max-width: 640px;  
-	display: flex;
-	justify-content: center;
-	flex-direction: column;
-
-
+    margin: 0 auto;
+    padding-top: 15px;
+    max-width: 640px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .cell {
-	width: 100%;
-	max-width: 678px;
-	min-height: 40px;
-	line-height:40px;
-	overflow-x: hidden;
-	overflow-y: hidden;
-	white-space:nowrap;
-	background-color: #0f222e;
-	display: flex;
-	align-items: center;
-	border: 1px solid grey;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 15px;
-	box-sizing: border-box;
-	padding-left: 8px;
-	transform: translate(-4px, 0px);
-	font-family: 'Open Sans';font-size: 14px;
-	font-weight: 600;
-	color: white;
+    width: 100%;
+    max-width: 678px;
+    min-height: 40px;
+    line-height: 40px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: #0f222e;
+    display: flex;
+    align-items: center;
+    border: 1px solid grey;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    padding-left: 8px;
+    transform: translate(-4px, 0px);
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
 
-	user-select: text;
-	-moz-user-select: text;
-
+    user-select: text;
+    -moz-user-select: text;
 }
-
 
 input {
-	border: 1px solid transparent;
-	background-color: #f1f1f1;
-	padding: 10px;
-	font-size: 16px;
-}
-input[type=text] {
-	background-color: #f1f1f1;
-	width: 100%;
-}
-input[type=submit] {
-	background-color: DodgerBlue;
-	color: #fff;
+    appearance: none;
+    border: none;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    background: none;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 .autocomplete-wrapper {
-	position: relative;
+    position: relative;
 }
 
 .autocomplete-items {
-	width: 100%;
-	max-width: 640px;  
-	max-height: 140px;
-	overflow-x: hidden;
-	overflow-y: scroll;
-	border: 1px solid grey;
-	background-color: #061219;
+    width: 100%;
+    max-width: 640px;
+    max-height: 140px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid grey;
+    background-color: #061219;
 
-	position: absolute;
-	top: 0%;
+    position: absolute;
+    top: 0%;
 
-	z-index: 1;
-	box-sizing: border-box;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 15px;
-	transform: translate(-4px, -15px);
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-	font-family: 'Open Sans';font-size: 14px;
-	font-weight: 600;
-	color: white;
-	outline: 1px solid white;
+    z-index: 1;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    transform: translate(-4px, -15px);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    outline: 1px solid white;
 }
 
 .autocomplete-items::-webkit-scrollbar {
-	display: none;
+    display: none;
 }
 
 .autocomplete-items div {
-	width: 100%;
-	min-height: 35px;
-  line-height:35px;
-	background-color: #061219;
-	align-items: center;
-	border-bottom: 1px solid grey;
-	padding-left: 8px;
-  cursor: pointer;
-
+    width: 100%;
+    min-height: 35px;
+    line-height: 35px;
+    background-color: #061219;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding-left: 8px;
+    cursor: pointer;
 }
 .autocomplete-items div:hover {
-	/*when hovering an item:*/
-	background-color: #a9a9a9;
+    /*when hovering an item:*/
+    background-color: #a9a9a9;
 }
 .autocomplete-active {
-	/*when navigating through the items using the arrow keys:*/
-	background-color: DodgerBlue !important;
-	color: #ffffff;
+    /*when navigating through the items using the arrow keys:*/
+    background-color: DodgerBlue !important;
+    color: #ffffff;
 }
 
 strong {
-	color: #ff7a4a;
+    color: #ff7a4a;
 }
 
 .autocomplete-footer {
-	width: 100%;
-	height: 15px;
-	line-height:15px;
-	background-color: #061219;
-	align-items: center;
-	border-bottom: 1px solid grey;
-	padding-left: 8px;
-	max-width: 640px;  
-	overflow-x: hidden;
-	overflow-y: scroll;
-	border: 1px solid grey;
+    width: 100%;
+    height: 15px;
+    line-height: 15px;
+    background-color: #061219;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    padding-left: 8px;
+    max-width: 640px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    border: 1px solid grey;
 
-	position: absolute;
+    position: absolute;
 
-	z-index: 1;
-	box-sizing: border-box;
-	margin-left: 5px;
-	margin-right: 5px;
-	margin-bottom: 15px;
-	transform: translate(-4px, -15px);
-	-ms-overflow-style: none;  /* IE and Edge */
-	scrollbar-width: none;  /* Firefox */
-	font-family: 'Open Sans';font-size: 8px;
-	font-weight: 600;
-	color: white;
-	outline: 1px solid white;
-	clear:both;
+    z-index: 1;
+    box-sizing: border-box;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    transform: translate(-4px, -15px);
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    font-family: "Open Sans";
+    font-size: 8px;
+    font-weight: 600;
+    color: white;
+    outline: 1px solid white;
+    clear: both;
 }
 
 .correct {
-	color: green !important;
+    color: green !important;
 }
 
 .wrong {
-	color: red !important;
+    color: red !important;
 }
 
 .current {
-	background-color: green;
+    background-color: green;
 }
 
 [contenteditable]:focus {
-	outline: 1px solid white;
+    outline: 1px solid white;
 }
 
-[contentEditable=true]:empty:not(:focus):before {
-  content: attr(data-text);
-  color: #647782;
-  white-space: nowrap;
+[contentEditable="true"]:empty:not(:focus):before {
+    content: attr(data-text);
+    color: #647782;
+    white-space: nowrap;
 }
