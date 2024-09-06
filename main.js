@@ -118,9 +118,12 @@ function setTodayPlayers() {
 
         while (
             EndPlayer === StartPlayer ||
-            PlayerTeammates[StartPlayer].includes(EndPlayer)
+            PlayerTeammates[StartPlayer].includes(EndPlayer) ||
+            !bfs()
         ) {
+            StartPlayer = randomChoice(popular_players, rand);
             EndPlayer = randomChoice(popular_players, rand);
+            console.log("reroll");
         }
     }
     console.log("Start Player: " + StartPlayer);
@@ -290,6 +293,9 @@ function bfs() {
     }
     while (queue) {
         var path = queue.shift();
+        if (!path) {
+            return null;
+        }
         var node = path[path.length - 1];
 
         if (!explored.includes(node)) {
