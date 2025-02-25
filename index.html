@@ -1,26 +1,46 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- Google tag (gtag.js) -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="Touchdown! Connect NFL players by their mutual teammates. New players to connect every day! Can you connect them in the fewest number of players?">
+		<meta name="keywords" content="NFL, NFL connections, NFL connections game, football, player connections, sports game, trivia, touchdown, athlete connection, NFL players, football trivia, sports trivia, football connections, daily puzzle, NFL game, sports puzzle, team connections">
+		<meta name="author" content="Abhishek Govindarasu, Aaran Guha">
+		<meta name="theme-color" content="#d95e00">
+		<meta name="robots" content="index, follow">
+	
+		<meta property="og:title" content="Touchdown - NFL Player Connection Game">
+		<meta property="og:description" content="Test your knowledge by connecting NFL players through their mutual teammates!">
+		<meta property="og:url" content="https://touchdown.life">
+		<meta property="og:type" content="website">
+	
+		<meta name="twitter:card" content="summary">
+		<meta name="twitter:title" content="Touchdown - NFL Player Connection Game">
+		<meta name="twitter:description" content="Test your knowledge by connecting NFL players through their mutual teammates!">
+	
+		<title>Touchdown - Connect NFL Players</title>
+	
+		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+	
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-88LDCLG3YR"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() { dataLayer.push(arguments); }
 			gtag('js', new Date());
-			
 			gtag('config', 'G-88LDCLG3YR');
 		</script>
-		<title>Touchdown</title>
-		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
-		<script type="text/javascript" src="main.js"></script>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet'>
-		<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
-		<link rel="stylesheet" type="text/css" href="loading-bar.min.css" />
-		<script type="text/javascript" src="loading-bar.min.js"></script>
+	
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	
+		<link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+	
+		<link rel="stylesheet" href="loading-bar.min.css">
 		<link rel="stylesheet" href="style.css">
-		<meta name="description"
-			content="Touchdown! Connect NFL players by their mutual teammates. New players to connect every day! Can you connect them in the fewest number of players?" />
+	
+		<script defer src="loading-bar.min.js"></script>
+		<script defer src="main.js"></script>
 	</head>
 	<body>
 		<div class="loading-screen" id="loading-screen">
@@ -33,7 +53,7 @@
 					data-img="data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3Csvg enable-background='new 0 0 58 58' fill='%23d95e00' version='1.1' viewBox='0 0 58 58' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50.554,0h-3.637C21.047,0,0,21.047,0,46.917v3.637C0,54.66,3.34,58,7.446,58h3.637C36.953,58,58,36.953,58,11.083V7.446 C58,3.34,54.66,0,50.554,0z M2,50.554v-3.637C2,22.149,22.149,2,46.917,2h3.637c1.265,0,2.427,0.437,3.353,1.164 c-7.562,2.278-14.041,4.664-19.662,7.667l-2.538-2.538c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.134,2.134 c-1.306,0.756-2.564,1.553-3.778,2.394l-2.942-2.942c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.714,2.714 c-1.167,0.88-2.291,1.811-3.375,2.796l-2.925-2.925c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.886,2.886 c-1.023,1.011-2.009,2.08-2.962,3.21l-2.51-2.51c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.658,2.658 c-0.885,1.138-1.742,2.337-2.57,3.602l-2.674-2.674c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.991,2.991 c-0.762,1.254-1.502,2.569-2.22,3.951l-2.356-2.356c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l2.829,2.829 c-0.657,1.354-1.296,2.773-1.92,4.251l-2.494-2.494c-0.391-0.391-1.023-0.391-1.414,0s-0.391,1.023,0,1.414l3.085,3.085 c-1.544,3.882-2.99,8.192-4.37,12.983C2.784,53.774,2,52.254,2,50.554z M56,11.083C56,35.851,35.851,56,11.083,56H7.446 c-0.57,0-1.12-0.089-1.637-0.252c1.307-4.579,2.672-8.697,4.112-12.412l2.371,2.371C12.488,45.902,12.744,46,13,46 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.983-2.983c0.616-1.496,1.247-2.917,1.892-4.28l2.677,2.677 C15.488,39.902,15.744,40,16,40c0.256,0,0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.16-3.16 c0.709-1.399,1.436-2.728,2.184-3.988l2.562,2.562C18.488,33.902,18.744,34,19,34s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.9-2.9c0.82-1.282,1.665-2.493,2.536-3.636l2.95,2.95C22.488,28.902,22.744,29,23,29 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.114-3.114c0.949-1.145,1.93-2.218,2.943-3.229l2.757,2.757 C26.488,23.902,26.744,24,27,24s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-2.725-2.725 c1.087-0.993,2.214-1.92,3.379-2.793l2.932,2.932C31.488,19.902,31.744,20,32,20s0.512-0.098,0.707-0.293 c0.391-0.391,0.391-1.023,0-1.414l-2.698-2.698c1.224-0.838,2.493-1.624,3.807-2.365l3.477,3.477C37.488,16.902,37.744,17,38,17 s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414l-3.056-3.056c5.656-2.93,12.14-5.179,19.673-7.412 C55.754,5.603,56,6.496,56,7.446V11.083z'/%3E%3C/svg%3E%0A"
 					data-img-size="300,300" data-value="0"></div>
 			</div>
-			<div class="loading-footer">
+			<div class="loading-footer" >
 				<!-- <span id="loading-footer-text">Loading resources<span id="loading-footer-dots"></span></span><br> -->
 			</div>
 		</div>
