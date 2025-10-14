@@ -5,6 +5,7 @@ import { highlight, type SearchResult } from "../utils/search";
 
 interface AutocompleteProps {
   suggestions: SearchResult[];
+  totalResults: number;
   onSelect: (value: string) => void;
   activeIndex: number;
   onActiveIndexChange: (index: number) => void;
@@ -13,6 +14,7 @@ interface AutocompleteProps {
 
 export function Autocomplete({
   suggestions,
+  totalResults,
   onSelect,
   activeIndex,
   onActiveIndexChange,
@@ -136,7 +138,7 @@ export function Autocomplete({
       </div>
       <div style={footerStyle}>
         <span>
-          {suggestions.length} player{suggestions.length !== 1 ? "s" : ""} found
+          {totalResults} player{totalResults !== 1 ? "s" : ""}, showing {suggestions.length}
         </span>
         {!isMobile && <span style={{ fontSize: "10px" }}>↑↓ to navigate • ↵ to select</span>}
       </div>

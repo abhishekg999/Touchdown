@@ -21,6 +21,7 @@ export function PlayerInput({
 }: PlayerInputProps) {
   const [inputValue, setInputValue] = useState("");
   const [suggestions, setSuggestions] = useState<SearchResult[]>([]);
+  const [totalResults, setTotalResults] = useState(0);
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const { isMobile } = useResponsive();
@@ -32,13 +33,16 @@ export function PlayerInput({
 
     if (!value) {
       setSuggestions([]);
+      setTotalResults(0);
       setActiveIndex(-1);
       return;
     }
 
-    const results = search(value, playerNames).slice(0, 10);
+    const allResults = search(value, playerNames);
+    const results = allResults.slice(0, 10);
 
     setSuggestions(results);
+    setTotalResults(allResults.length);
     setActiveIndex(results.length > 0 ? 0 : -1);
   };
 
@@ -114,6 +118,7 @@ export function PlayerInput({
       <div style={{ position: "relative" }}>
         <Autocomplete
           suggestions={suggestions}
+          totalResults={totalResults}
           onSelect={handleSelect}
           activeIndex={activeIndex}
           onActiveIndexChange={setActiveIndex}
