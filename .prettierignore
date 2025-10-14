@@ -1,0 +1,8 @@
+node_modules
+dist
+old
+*.log
+bun.lockb
+*.json
+src/data/
+
