@@ -1,7 +1,8 @@
-import { PlayerCell } from "./PlayerCell";
-import { PlayerInput } from "./PlayerInput";
+import { colors, fonts } from "../styles/theme";
 import type { GameState, PlayerIds, PlayerTeammates } from "../types";
 import { MAXGUESSES } from "../utils/constants";
+import { PlayerCell } from "./PlayerCell";
+import { PlayerInput } from "./PlayerInput";
 
 interface GameBoardProps {
   startPlayer: number;
@@ -33,25 +34,47 @@ export function GameBoard({
   };
 
   return (
-    <div class="main">
-      <div class="game-prompt">
+    <div
+      style={{
+        position: "relative",
+        width: "85%",
+        margin: "auto",
+        backgroundColor: "rgba(0, 0, 0, 0)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          color: colors.text,
+          fontFamily: fonts.main,
+          fontSize: "16px",
+          paddingTop: "20px",
+          paddingBottom: "10px",
+          overflowX: "hidden",
+          textAlign: "center",
+        }}
+      >
         <span>
-          Connect{" "}
-          <span id="start-player" class="emphasize">
-            {playerIds[startPlayer]}
-          </span>{" "}
-          to{" "}
-          <span id="end-player" class="emphasize">
-            {playerIds[endPlayer]}
-          </span>{" "}
-          through mutual teammates.
+          Connect <span style={{ color: colors.emphasis }}>{playerIds[startPlayer]}</span> to{" "}
+          <span style={{ color: colors.emphasis }}>{playerIds[endPlayer]}</span> through mutual
+          teammates.
         </span>
       </div>
-      <div class="game-table">
-        <div id="start-pt">
+      <div
+        style={{
+          margin: "0 auto",
+          paddingTop: "15px",
+          maxWidth: "640px",
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div>
           <PlayerCell playerName={playerIds[startPlayer]} />
         </div>
-        <div id="guess-pt">
+        <div>
           {currentGame.guesses.map(([playerId, isCorrect], index) => (
             <PlayerCell
               key={index}
@@ -68,13 +91,25 @@ export function GameBoard({
             disabled={currentGame.finished}
           />
         )}
-        <div id="end-pt">
+        <div>
           <PlayerCell playerName={playerIds[endPlayer]} />
         </div>
       </div>
-      <div class="remaining-guesses" id="rem-guesses">
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          color: colors.warning,
+          fontFamily: fonts.main,
+          fontSize: "14px",
+          paddingTop: "10px",
+          paddingBottom: "10px",
+          overflowX: "hidden",
+          textAlign: "center",
+        }}
+      >
         <span>
-          <span id="remaining-guess-cnt">{remainingGuesses}</span> guesses remaining
+          <span>{remainingGuesses}</span> guesses remaining
         </span>
       </div>
     </div>

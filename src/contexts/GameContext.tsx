@@ -1,16 +1,32 @@
-import { useEffect, useState } from "preact/hooks";
+import type { ComponentChildren } from "preact";
+import { createContext } from "preact";
+import { useContext, useEffect, useState } from "preact/hooks";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 import type { GameState, PlayerDefaultDates, PlayerTeammates } from "../types";
 import { POPULAR_PLAYERS } from "../utils/constants";
 import { getDate } from "../utils/date";
 import { bfs } from "../utils/pathfinding";
 import { getPsrand, randomChoice } from "../utils/random";
 import { getInitialGameState, STORAGE_KEYS } from "../utils/storage";
-import { useLocalStorage } from "./useLocalStorage";
 
-export function useGameState(
-  playerDefaultDates: PlayerDefaultDates,
-  playerTeammates: PlayerTeammates
-) {
+interface GameContextValue {
+  currentGame: GameState;
+  setCurrentGame: (game: GameState) => void;
+  startPlayer: number;
+  endPlayer: number;
+  prevPlayer: number;
+  setPrevPlayer: (player: number) => void;
+}
+
+const GameContext = createContext<GameContextValue | undefined>(undefined);
+
+interface GameProviderProps {
+  children: ComponentChildren;
+  playerDefaultDates: PlayerDefaultDates;
+  playerTeammates: PlayerTeammates;
+}
+
+export function GameProvider({ children, playerDefaultDates, playerTeammates }: GameProviderProps) {
   const [currentGame, setCurrentGame] = useLocalStorage<GameState>(
     STORAGE_KEYS.CURRENT_GAME,
     getInitialGameState()
@@ -59,7 +75,7 @@ export function useGameState(
     }
   }, [playerDefaultDates, playerTeammates]);
 
-  return {
+  const value: GameContextValue = {
     currentGame,
     setCurrentGame,
     startPlayer,
@@ -67,4 +83,14 @@ export function useGameState(
     prevPlayer,
     setPrevPlayer,
   };
+
+  return <GameContext.Provider value={value}>{children}</GameContext.Provider>;
+}
+
+export function useGame() {
+  const context = useContext(GameContext);
+  if (!context) {
+    throw new Error("useGame must be used within a GameProvider");
+  }
+  return context;
 }

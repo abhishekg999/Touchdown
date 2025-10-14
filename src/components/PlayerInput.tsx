@@ -1,6 +1,8 @@
-import { useState, useRef, useEffect } from "preact/hooks";
-import { Autocomplete } from "./Autocomplete";
+import { useEffect, useRef, useState } from "preact/hooks";
+import { colors, fonts } from "../styles/theme";
 import type { PlayerIds } from "../types";
+import { search, type SearchResult } from "../utils/search";
+import { Autocomplete } from "./Autocomplete";
 
 interface PlayerInputProps {
   playerNames: string[];
@@ -16,7 +18,7 @@ export function PlayerInput({
   disabled,
 }: PlayerInputProps) {
   const [inputValue, setInputValue] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<SearchResult[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -35,12 +37,10 @@ export function PlayerInput({
       return;
     }
 
-    const filtered = playerNames
-      .filter((name) => name.toUpperCase().startsWith(value.toUpperCase()))
-      .slice(0, 10);
+    const results = search(value, playerNames).slice(0, 10);
 
-    setSuggestions(filtered);
-    setActiveIndex(filtered.length > 0 ? 0 : -1);
+    setSuggestions(results);
+    setActiveIndex(results.length > 0 ? 0 : -1);
   };
 
   const handleSelect = (name: string) => {
@@ -65,12 +65,38 @@ export function PlayerInput({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  const listboxId = "player-listbox";
+  const activeOptionId = activeIndex >= 0 ? `${listboxId}-option-${activeIndex}` : undefined;
+
+  const inputStyle = {
+    width: "100%",
+    maxWidth: "678px",
+    minHeight: "40px",
+    lineHeight: "40px",
+    overflowX: "hidden" as const,
+    overflowY: "hidden" as const,
+    whiteSpace: "nowrap" as const,
+    backgroundColor: colors.cellBackground,
+    display: "flex",
+    alignItems: "center",
+    border: `1px solid ${colors.border}`,
+    marginLeft: "5px",
+    marginRight: "5px",
+    marginBottom: "15px",
+    boxSizing: "border-box" as const,
+    paddingLeft: "8px",
+    transform: "translate(-4px, 0px)",
+    fontFamily: fonts.main,
+    fontSize: "14px",
+    fontWeight: 600,
+    color: colors.text,
+  };
+
   return (
-    <div id="next-pt">
+    <div>
       <input
         ref={inputRef}
-        class="cell"
-        id="ui"
+        style={inputStyle}
         placeholder="Enter player name here"
         value={inputValue}
         onInput={handleInput}
@@ -79,13 +105,20 @@ export function PlayerInput({
         data-gramm="false"
         data-gramm_editor="false"
         data-enable-grammarly="false"
+        role="combobox"
+        aria-autocomplete="list"
+        aria-controls={suggestions.length > 0 ? listboxId : undefined}
+        aria-expanded={suggestions.length > 0}
+        aria-activedescendant={activeOptionId}
+        aria-label="Enter NFL player name"
       />
-      <div class="autocomplete-wrapper" id="autocomplete-wrapper">
+      <div style={{ position: "relative" }}>
         <Autocomplete
           suggestions={suggestions}
           onSelect={handleSelect}
           activeIndex={activeIndex}
           onActiveIndexChange={setActiveIndex}
+          listboxId={listboxId}
         />
       </div>
     </div>

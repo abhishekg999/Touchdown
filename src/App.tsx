@@ -4,50 +4,22 @@ import { Header } from "./components/Header";
 import { InfoModal } from "./components/InfoModal";
 import { LoadingScreen } from "./components/LoadingScreen";
 import { StatsModal } from "./components/StatsModal";
-import { useGameState } from "./hooks/useGameState";
-import { useStatistics } from "./hooks/useStatistics";
+import { GameProvider, StatisticsProvider, useGame, useStatisticsContext } from "./contexts";
+import { colors } from "./styles/theme";
 import type { GameData } from "./types";
 import { MAXGUESSES } from "./utils/constants";
+import { hasStorageData } from "./utils/storage";
 
-export function App() {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
-  const [gameData, setGameData] = useState<GameData>({
-    playerIds: {},
-    playerTeammates: {},
-    playerDefaultDates: {},
-  });
-  const [statistics, setStatistics] = useStatistics();
-
+function GameContent({
+  gameData,
+  setIsStatsModalOpen,
+}: {
+  gameData: GameData;
+  setIsStatsModalOpen: (open: boolean) => void;
+}) {
   const { currentGame, setCurrentGame, startPlayer, endPlayer, prevPlayer, setPrevPlayer } =
-    useGameState(gameData.playerDefaultDates, gameData.playerTeammates);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const { playerIds, playerTeammates, playerDefaultDates } = await import("./data");
-
-        setGameData({
-          playerIds,
-          playerTeammates,
-          playerDefaultDates,
-        });
-      } catch (error) {
-        console.error("Error loading game data:", error);
-      }
-    };
-
-    loadData();
-  }, []);
-
-  useEffect(() => {
-    // Show info modal on first visit
-    const hasVisited = localStorage.getItem("Statistics") !== null;
-    if (!hasVisited && !isLoading) {
-      setIsInfoModalOpen(true);
-    }
-  }, [isLoading]);
+    useGame();
+  const { statistics, setStatistics } = useStatisticsContext();
 
   const handleGuess = (playerId: number, isCorrect: boolean) => {
     const newGuesses = [...currentGame.guesses, [playerId, isCorrect] as [number, boolean]];
@@ -56,7 +28,6 @@ export function App() {
     if (isCorrect) {
       setPrevPlayer(playerId);
 
-      // Check if player won
       if (gameData.playerTeammates[playerId]?.includes(endPlayer)) {
         newGame.finished = true;
         newGame.won = true;
@@ -75,7 +46,6 @@ export function App() {
       }
     }
 
-    // Check if player lost
     if (newGuesses.length >= MAXGUESSES && !newGame.won) {
       newGame.finished = true;
       newGame.won = false;
@@ -94,13 +64,6 @@ export function App() {
 
   return (
     <>
-      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-
-      <Header
-        onInfoClick={() => setIsInfoModalOpen(true)}
-        onStatsClick={() => setIsStatsModalOpen(true)}
-      />
-
       {startPlayer && endPlayer && (
         <GameBoard
           startPlayer={startPlayer}
@@ -112,21 +75,107 @@ export function App() {
           onGuess={handleGuess}
         />
       )}
-
-      <InfoModal isOpen={isInfoModalOpen} onClose={() => setIsInfoModalOpen(false)} />
-
-      <StatsModal
-        isOpen={isStatsModalOpen}
-        onClose={() => setIsStatsModalOpen(false)}
-        statistics={statistics}
-        currentGame={currentGame}
-        startPlayer={startPlayer}
-        endPlayer={endPlayer}
-        playerIds={gameData.playerIds}
-        playerTeammates={gameData.playerTeammates}
-      />
-
-      <div class="footer"></div>
     </>
+  );
+}
+
+export function App() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
+  const [isStatsModalOpen, setIsStatsModalOpen] = useState(false);
+  const [gameData, setGameData] = useState<GameData>({
+    playerIds: {},
+    playerTeammates: {},
+    playerDefaultDates: {},
+  });
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        const { playerIds, playerTeammates, playerDefaultDates } = await import("./data");
+
+        setGameData({
+          playerIds,
+          playerTeammates,
+          playerDefaultDates,
+        });
+        setIsDataLoaded(true);
+      } catch (error) {
+        console.error("Error loading game data:", error);
+        setIsDataLoaded(true);
+      }
+    };
+
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    if (!hasStorageData() && !isLoading) {
+      setIsInfoModalOpen(true);
+    }
+  }, [isLoading]);
+
+  return (
+    <StatisticsProvider>
+      <GameProvider
+        playerDefaultDates={gameData.playerDefaultDates}
+        playerTeammates={gameData.playerTeammates}
+      >
+        <div
+          style={{
+            backgroundColor: colors.background,
+            minHeight: "100vh",
+            width: "100%",
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {isLoading && (
+            <LoadingScreen onComplete={() => setIsLoading(false)} isDataLoaded={isDataLoaded} />
+          )}
+
+          <Header
+            onInfoClick={() => setIsInfoModalOpen(true)}
+            onStatsClick={() => setIsStatsModalOpen(true)}
+          />
+
+          <GameContent gameData={gameData} setIsStatsModalOpen={setIsStatsModalOpen} />
+
+          <InfoModal isOpen={isInfoModalOpen} onClose={() => setIsInfoModalOpen(false)} />
+          <StatsModalWrapper
+            isOpen={isStatsModalOpen}
+            onClose={() => setIsStatsModalOpen(false)}
+            gameData={gameData}
+          />
+        </div>
+      </GameProvider>
+    </StatisticsProvider>
+  );
+}
+
+function StatsModalWrapper({
+  isOpen,
+  onClose,
+  gameData,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  gameData: GameData;
+}) {
+  const { currentGame, startPlayer, endPlayer } = useGame();
+  const { statistics } = useStatisticsContext();
+
+  return (
+    <StatsModal
+      isOpen={isOpen}
+      onClose={onClose}
+      statistics={statistics}
+      currentGame={currentGame}
+      startPlayer={startPlayer}
+      endPlayer={endPlayer}
+      playerIds={gameData.playerIds}
+      playerTeammates={gameData.playerTeammates}
+    />
   );
 }

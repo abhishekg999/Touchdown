@@ -10,7 +10,10 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "preact": "^10.19.3"
+    "preact": "^10.19.3",
+    "radix-ui": "^1.4.3",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat"
   },
   "devDependencies": {
     "prettier": "^3.6.2",
