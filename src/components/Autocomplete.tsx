@@ -24,15 +24,12 @@ export function Autocomplete({
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.keyCode === 40) {
-        // Down arrow
         e.preventDefault();
         onActiveIndexChange(Math.min(activeIndex + 1, suggestions.length - 1));
       } else if (e.keyCode === 38) {
-        // Up arrow
         e.preventDefault();
         onActiveIndexChange(Math.max(activeIndex - 1, 0));
       } else if (e.keyCode === 13) {
-        // Enter
         e.preventDefault();
         if (activeIndex >= 0 && activeIndex < suggestions.length) {
           const selected = suggestions[activeIndex];
@@ -47,7 +44,6 @@ export function Autocomplete({
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [activeIndex, suggestions, onSelect, onActiveIndexChange]);
 
-  // Scroll active item into view
   useEffect(() => {
     if (listRef.current && activeIndex >= 0) {
       const activeElement = listRef.current.children[activeIndex] as HTMLElement;

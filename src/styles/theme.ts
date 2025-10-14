@@ -1,41 +1,25 @@
-/**
- * Design System - Touchdown
- *
- * Design Philosophy:
- * - Straight UI (no border-radius, no curves)
- * - Dark theme with high contrast
- * - Flat design with minimal shadows
- * - Simple, clean typography
- */
-
 export const colors = {
-  // Backgrounds
   background: "#101110",
   cellBackground: "#0f222e",
   autocompleteBackground: "#061219",
   modalBackground: "#000000",
 
-  // Text
   text: "#ffffff",
   textGray: "#aaaaaa",
   textPlaceholder: "#647782",
 
-  // Accent colors
-  emphasis: "#ffff00", // yellow
-  correct: "#008000", // green
-  wrong: "#ff0000", // red
-  warning: "#ff4500", // orangered
-  strong: "#ff7a4a", // orange
+  emphasis: "#ffff00",
+  correct: "#008000",
+  wrong: "#ff0000",
+  warning: "#ff4500",
+  strong: "#ff7a4a",
 
-  // Borders
   border: "#888888",
   borderLight: "#585959",
 
-  // Interactive states
   hover: "#a9a9a9",
-  active: "#1e90ff", // DodgerBlue
+  active: "#1e90ff",
 
-  // Overlay
   overlay: "rgba(0, 0, 0, 0.6)",
 } as const;
 
