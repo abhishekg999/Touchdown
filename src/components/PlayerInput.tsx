@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "preact/hooks";
+import { useResponsive } from "../hooks/useResponsive";
 import { colors, fonts } from "../styles/theme";
 import type { PlayerIds } from "../types";
 import { search, type SearchResult } from "../utils/search";
@@ -22,6 +23,7 @@ export function PlayerInput({
   const [suggestions, setSuggestions] = useState<SearchResult[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
+  const { isMobile } = useResponsive();
 
   const handleInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
@@ -68,8 +70,8 @@ export function PlayerInput({
   const inputStyle = {
     width: "100%",
     maxWidth: "678px",
-    minHeight: "40px",
-    lineHeight: "40px",
+    minHeight: isMobile ? "38px" : "40px",
+    lineHeight: isMobile ? "38px" : "40px",
     overflowX: "hidden" as const,
     overflowY: "hidden" as const,
     whiteSpace: "nowrap" as const,
@@ -77,14 +79,14 @@ export function PlayerInput({
     display: "flex",
     alignItems: "center",
     border: `1px solid ${colors.border}`,
-    marginLeft: "5px",
-    marginRight: "5px",
-    marginBottom: "15px",
+    marginLeft: isMobile ? "0" : "5px",
+    marginRight: isMobile ? "0" : "5px",
+    marginBottom: isMobile ? "12px" : "15px",
     boxSizing: "border-box" as const,
     paddingLeft: "8px",
-    transform: "translate(-4px, 0px)",
+    transform: isMobile ? "none" : "translate(-4px, 0px)",
     fontFamily: fonts.main,
-    fontSize: "14px",
+    fontSize: isMobile ? "13px" : "14px",
     fontWeight: 600,
     color: colors.text,
   };

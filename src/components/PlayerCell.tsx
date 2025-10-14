@@ -1,4 +1,5 @@
 import { colors, fonts } from "../styles/theme";
+import { useResponsive } from "../hooks/useResponsive";
 
 interface PlayerCellProps {
   playerName: string;
@@ -6,6 +7,7 @@ interface PlayerCellProps {
 }
 
 export function PlayerCell({ playerName, variant = "default" }: PlayerCellProps) {
+  const { isMobile } = useResponsive();
   const textColor =
     variant === "correct" ? colors.correct : variant === "wrong" ? colors.wrong : colors.text;
 
@@ -14,8 +16,8 @@ export function PlayerCell({ playerName, variant = "default" }: PlayerCellProps)
       style={{
         width: "100%",
         maxWidth: "678px",
-        minHeight: "40px",
-        lineHeight: "40px",
+        minHeight: isMobile ? "38px" : "40px",
+        lineHeight: isMobile ? "38px" : "40px",
         overflowX: "hidden",
         overflowY: "hidden",
         whiteSpace: "nowrap",
@@ -23,14 +25,14 @@ export function PlayerCell({ playerName, variant = "default" }: PlayerCellProps)
         display: "flex",
         alignItems: "center",
         border: `1px solid ${colors.border}`,
-        marginLeft: "5px",
-        marginRight: "5px",
-        marginBottom: "15px",
+        marginLeft: isMobile ? "0" : "5px",
+        marginRight: isMobile ? "0" : "5px",
+        marginBottom: isMobile ? "12px" : "15px",
         boxSizing: "border-box",
         paddingLeft: "8px",
-        transform: "translate(-4px, 0px)",
+        transform: isMobile ? "none" : "translate(-4px, 0px)",
         fontFamily: fonts.main,
-        fontSize: "14px",
+        fontSize: isMobile ? "13px" : "14px",
         fontWeight: 600,
         color: textColor,
         userSelect: "text",

@@ -1,8 +1,10 @@
 import { useState } from "preact/hooks";
 import { Dialog } from "radix-ui";
+import { useResponsive } from "../hooks/useResponsive";
 import { colors, fonts } from "../styles/theme";
 import type { GameState, PlayerIds, PlayerTeammates, Statistics } from "../types";
 import { POPULAR_PLAYERS } from "../utils/constants";
+import { getModalStyles } from "../utils/modalStyles";
 import { bfs, bfsPop } from "../utils/pathfinding";
 import { generateShareText, shareToClipboard } from "../utils/share";
 
@@ -29,6 +31,8 @@ export function StatsModal({
 }: StatsModalProps) {
   const [tooltipText, setTooltipText] = useState("Copy to clipboard");
   const [showTooltip, setShowTooltip] = useState(false);
+  const { isMobile } = useResponsive();
+  const modalStyles = getModalStyles(isMobile);
 
   const handleShare = () => {
     const shareText = generateShareText(currentGame, startPlayer, endPlayer, playerIds);
@@ -93,81 +97,18 @@ export function StatsModal({
     );
   };
 
-  // Styles
-  const overlayStyle = {
-    position: "fixed" as const,
-    inset: 0,
-    zIndex: 999,
-    backgroundColor: colors.overlay,
-    backdropFilter: "blur(4px)",
-  };
-
-  const contentStyle = {
-    position: "fixed" as const,
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: 1000,
-    backgroundColor: colors.modalBackground,
-    padding: "24px",
-    border: `1px solid ${colors.strong}`,
-    width: "85%",
-    maxWidth: "512px",
-    maxHeight: "90vh",
-    overflowY: "auto" as const,
-    boxSizing: "border-box" as const,
-  };
-
-  const closeButtonStyle = {
-    color: colors.textGray,
-    fontSize: "34px",
-    fontWeight: "bold" as const,
-    display: "block",
-    position: "absolute" as const,
-    top: "15px",
-    right: "15px",
-    background: "none",
-    border: "none",
-    padding: 0,
-    cursor: "pointer",
-    lineHeight: 1,
-  };
-
-  const headerStyle = {
-    borderBottom: `1px solid ${colors.strong}`,
-    textAlign: "center" as const,
-    paddingBottom: "16px",
-    marginBottom: "20px",
-  };
-
-  const headerTextStyle = {
-    fontFamily: fonts.headline,
-    fontSize: "28px",
-    fontWeight: 700,
-    color: colors.text,
-    margin: 0,
-    letterSpacing: "2px",
-    textTransform: "uppercase" as const,
-  };
-
-  const modalTextStyle = {
-    fontFamily: fonts.main,
-    fontSize: "13px",
-    color: colors.text,
-  };
-
   const descriptionStyle = {
     textAlign: "center" as const,
-    marginBottom: "16px",
+    marginBottom: isMobile ? "12px" : "16px",
     color: colors.textGray,
   };
 
   const pathContainerStyle = {
     textAlign: "center" as const,
-    fontSize: "15px",
+    fontSize: isMobile ? "13px" : "15px",
     fontWeight: 700,
-    marginBottom: "20px",
-    padding: "16px",
+    marginBottom: isMobile ? "16px" : "20px",
+    padding: isMobile ? "12px" : "16px",
     backgroundColor: "rgba(255, 122, 74, 0.05)",
     border: `1px solid ${colors.strong}`,
   };
@@ -176,78 +117,80 @@ export function StatsModal({
     fontFamily: fonts.headline,
     color: colors.strong,
     fontWeight: 700,
-    marginBottom: "6px",
-    letterSpacing: "1px",
+    marginBottom: isMobile ? "4px" : "6px",
+    letterSpacing: isMobile ? "0.5px" : "1px",
+    fontSize: isMobile ? "12px" : "13px",
   };
 
   const pathRouteStyle = {
-    fontSize: "13px",
+    fontSize: isMobile ? "11px" : "13px",
     fontWeight: 400,
     fontStyle: "italic" as const,
-    marginTop: "6px",
+    marginTop: isMobile ? "4px" : "6px",
     color: colors.text,
+    wordBreak: "break-word" as const,
   };
 
   const statsGridStyle = {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
-    gap: "12px",
-    marginBottom: "24px",
+    gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)",
+    gap: isMobile ? "8px" : "12px",
+    marginBottom: isMobile ? "16px" : "24px",
   };
 
   const statCardStyle = {
     textAlign: "center" as const,
-    padding: "16px 8px",
+    padding: isMobile ? "12px 6px" : "16px 8px",
     backgroundColor: "rgba(255, 122, 74, 0.05)",
     border: `1px solid ${colors.strong}`,
   };
 
   const statValueStyle = {
-    fontSize: "32px",
+    fontSize: isMobile ? "24px" : "32px",
     fontWeight: "bold" as const,
     color: colors.text,
     lineHeight: 1,
-    marginBottom: "8px",
+    marginBottom: isMobile ? "6px" : "8px",
   };
 
   const statLabelStyle = {
-    fontSize: "11px",
+    fontSize: isMobile ? "9px" : "11px",
     color: colors.textGray,
     textTransform: "uppercase" as const,
     letterSpacing: "0.5px",
   };
 
   const distributionContainerStyle = {
-    marginBottom: "20px",
+    marginBottom: isMobile ? "16px" : "20px",
   };
 
   const distributionTitleStyle = {
     fontFamily: fonts.headline,
-    fontSize: "14px",
+    fontSize: isMobile ? "12px" : "14px",
     fontWeight: 700,
-    marginBottom: "12px",
+    marginBottom: isMobile ? "10px" : "12px",
     textAlign: "center" as const,
     color: colors.strong,
     textTransform: "uppercase" as const,
-    letterSpacing: "1px",
+    letterSpacing: isMobile ? "0.5px" : "1px",
   };
 
   const distributionStyle = {
     display: "flex",
-    gap: "8px",
+    gap: isMobile ? "6px" : "8px",
     alignItems: "stretch",
   };
 
   const rowLabelsStyle = {
     display: "flex",
     flexDirection: "column" as const,
-    gap: "6px",
-    fontSize: "14px",
+    gap: isMobile ? "4px" : "6px",
+    fontSize: isMobile ? "12px" : "14px",
     fontWeight: 600,
   };
 
   const rowLabelStyle = {
-    height: "24px",
+    height: isMobile ? "20px" : "24px",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -258,41 +201,41 @@ export function StatsModal({
     flex: 1,
     display: "flex",
     flexDirection: "column" as const,
-    gap: "6px",
+    gap: isMobile ? "4px" : "6px",
   };
 
   const barStyle = (value: number, isCurrent: boolean) => ({
-    height: "24px",
+    height: isMobile ? "20px" : "24px",
     backgroundColor: isCurrent ? colors.correct : colors.textGray,
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
-    paddingRight: "8px",
-    fontSize: "13px",
+    paddingRight: isMobile ? "6px" : "8px",
+    fontSize: isMobile ? "11px" : "13px",
     fontWeight: 600,
     width: `${getBarWidth(value)}%`,
-    minWidth: value > 0 ? "32px" : "24px",
+    minWidth: value > 0 ? (isMobile ? "28px" : "32px") : isMobile ? "20px" : "24px",
     transition: "width 0.3s ease",
   });
 
   const shareContainerStyle = {
     textAlign: "center" as const,
-    marginBottom: "20px",
+    marginBottom: isMobile ? "16px" : "20px",
     position: "relative" as const,
   };
 
   const shareButtonStyle = {
     backgroundColor: colors.strong,
     color: colors.background,
-    fontSize: "14px",
+    fontSize: isMobile ? "12px" : "14px",
     fontWeight: 700,
     fontFamily: fonts.headline,
-    padding: "14px 36px",
+    padding: isMobile ? "12px 24px" : "14px 36px",
     border: `1px solid ${colors.strong}`,
     cursor: "pointer",
     transition: "all 0.2s ease",
     textTransform: "uppercase" as const,
-    letterSpacing: "1.5px",
+    letterSpacing: isMobile ? "1px" : "1.5px",
   };
 
   const tooltipStyle = {
@@ -323,11 +266,11 @@ export function StatsModal({
   };
 
   const footerStyle = {
-    marginTop: "20px",
-    paddingTop: "16px",
+    marginTop: isMobile ? "16px" : "20px",
+    paddingTop: isMobile ? "12px" : "16px",
     textAlign: "center" as const,
     borderTop: `1px solid ${colors.strong}`,
-    fontSize: "12px",
+    fontSize: isMobile ? "11px" : "12px",
     color: colors.textGray,
   };
 
@@ -340,10 +283,10 @@ export function StatsModal({
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
-        <Dialog.Overlay style={overlayStyle} />
-        <Dialog.Content style={contentStyle}>
+        <Dialog.Overlay style={modalStyles.overlay} />
+        <Dialog.Content style={modalStyles.content}>
           <Dialog.Close
-            style={closeButtonStyle}
+            style={modalStyles.closeButton}
             aria-label="Close"
             onMouseEnter={(e) => (e.currentTarget.style.color = colors.text)}
             onMouseLeave={(e) => (e.currentTarget.style.color = colors.textGray)}
@@ -351,9 +294,9 @@ export function StatsModal({
             &times;
           </Dialog.Close>
 
-          <div style={modalTextStyle}>
-            <div style={headerStyle}>
-              <Dialog.Title style={headerTextStyle}>Statistics</Dialog.Title>
+          <div style={modalStyles.modalText}>
+            <div style={modalStyles.header}>
+              <Dialog.Title style={modalStyles.headerText}>Statistics</Dialog.Title>
             </div>
 
             <Dialog.Description style={descriptionStyle}>

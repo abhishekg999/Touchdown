@@ -1,3 +1,4 @@
+import { useResponsive } from "../hooks/useResponsive";
 import { colors, fonts } from "../styles/theme";
 import type { GameState, PlayerIds, PlayerTeammates } from "../types";
 import { MAXGUESSES } from "../utils/constants";
@@ -26,6 +27,7 @@ export function GameBoard({
 }: GameBoardProps) {
   const playerNames = Object.values(playerIds);
   const remainingGuesses = MAXGUESSES - currentGame.guesses.length;
+  const { isMobile } = useResponsive();
 
   const handlePlayerSelect = (playerId: number) => {
     if (currentGame.finished) return;
@@ -49,11 +51,12 @@ export function GameBoard({
           justifyContent: "center",
           color: colors.text,
           fontFamily: fonts.main,
-          fontSize: "16px",
-          paddingTop: "20px",
-          paddingBottom: "10px",
+          fontSize: isMobile ? "14px" : "16px",
+          paddingTop: isMobile ? "12px" : "20px",
+          paddingBottom: isMobile ? "8px" : "10px",
           overflowX: "hidden",
           textAlign: "center",
+          padding: isMobile ? "12px 8px 8px" : "20px 0 10px",
         }}
       >
         <span>
@@ -103,9 +106,9 @@ export function GameBoard({
           justifyContent: "center",
           color: colors.warning,
           fontFamily: fonts.main,
-          fontSize: "14px",
-          paddingTop: "10px",
-          paddingBottom: "10px",
+          fontSize: isMobile ? "13px" : "14px",
+          paddingTop: isMobile ? "8px" : "10px",
+          paddingBottom: isMobile ? "8px" : "10px",
           overflowX: "hidden",
           textAlign: "center",
         }}

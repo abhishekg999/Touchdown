@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "preact/hooks";
+import { useResponsive } from "../hooks/useResponsive";
 import { colors, fonts } from "../styles/theme";
 import { highlight, type SearchResult } from "../utils/search";
 
@@ -18,6 +19,7 @@ export function Autocomplete({
   listboxId,
 }: AutocompleteProps) {
   const listRef = useRef<HTMLDivElement>(null);
+  const { isMobile } = useResponsive();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -60,18 +62,18 @@ export function Autocomplete({
   const containerStyle = {
     width: "100%",
     maxWidth: "640px",
-    maxHeight: "280px",
+    maxHeight: isMobile ? "240px" : "280px",
     border: `1px solid ${colors.text}`,
     backgroundColor: colors.autocompleteBackground,
     position: "absolute" as const,
     top: "0%",
     zIndex: 1,
     boxSizing: "border-box" as const,
-    marginLeft: "5px",
-    marginRight: "5px",
-    transform: "translate(-4px, -15px)",
+    marginLeft: isMobile ? "0" : "5px",
+    marginRight: isMobile ? "0" : "5px",
+    transform: isMobile ? "translate(0, -12px)" : "translate(-4px, -15px)",
     fontFamily: fonts.main,
-    fontSize: "14px",
+    fontSize: isMobile ? "13px" : "14px",
     fontWeight: 600,
     color: colors.text,
     display: "flex",
@@ -88,8 +90,8 @@ export function Autocomplete({
 
   const itemStyle = (isActive: boolean) => ({
     width: "100%",
-    minHeight: "35px",
-    lineHeight: "35px",
+    minHeight: isMobile ? "32px" : "35px",
+    lineHeight: isMobile ? "32px" : "35px",
     backgroundColor: isActive ? colors.strong : colors.autocompleteBackground,
     alignItems: "center",
     borderBottom: `1px solid ${colors.border}`,
@@ -100,13 +102,13 @@ export function Autocomplete({
   });
 
   const footerStyle = {
-    height: "24px",
-    lineHeight: "24px",
+    height: isMobile ? "22px" : "24px",
+    lineHeight: isMobile ? "22px" : "24px",
     backgroundColor: colors.autocompleteBackground,
     borderTop: `1px solid ${colors.border}`,
     paddingLeft: "8px",
     paddingRight: "8px",
-    fontSize: "11px",
+    fontSize: isMobile ? "10px" : "11px",
     color: colors.textGray,
     display: "flex",
     justifyContent: "space-between",
@@ -140,7 +142,7 @@ export function Autocomplete({
         <span>
           {suggestions.length} player{suggestions.length !== 1 ? "s" : ""} found
         </span>
-        <span style={{ fontSize: "10px" }}>↑↓ to navigate • ↵ to select</span>
+        {!isMobile && <span style={{ fontSize: "10px" }}>↑↓ to navigate • ↵ to select</span>}
       </div>
     </div>
   );

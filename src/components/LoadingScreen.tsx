@@ -1,4 +1,5 @@
 import { useEffect, useState } from "preact/hooks";
+import { useResponsive } from "../hooks/useResponsive";
 import { colors, fonts } from "../styles/theme";
 
 interface LoadingScreenProps {
@@ -10,6 +11,7 @@ export function LoadingScreen({ onComplete, isDataLoaded }: LoadingScreenProps) 
   const [isVisible, setIsVisible] = useState(true);
   const [opacity, setOpacity] = useState(1);
   const [minTimeElapsed, setMinTimeElapsed] = useState(false);
+  const { isMobile, isSmallMobile } = useResponsive();
 
   useEffect(() => {
     const minTimer = setTimeout(() => {
@@ -60,10 +62,10 @@ export function LoadingScreen({ onComplete, isDataLoaded }: LoadingScreenProps) 
       <div
         style={{
           fontFamily: fonts.headline,
-          fontSize: "64px",
+          fontSize: isSmallMobile ? "32px" : isMobile ? "48px" : "64px",
           color: colors.text,
-          marginBottom: "60px",
-          letterSpacing: "2px",
+          marginBottom: isMobile ? "40px" : "60px",
+          letterSpacing: isMobile ? "1px" : "2px",
           textTransform: "uppercase",
           animation: "pulse 2s ease-in-out infinite",
         }}
@@ -74,17 +76,17 @@ export function LoadingScreen({ onComplete, isDataLoaded }: LoadingScreenProps) 
       <div
         style={{
           position: "relative",
-          width: "200px",
-          height: "200px",
-          marginBottom: "40px",
+          width: isSmallMobile ? "150px" : isMobile ? "180px" : "240px",
+          height: isSmallMobile ? "150px" : isMobile ? "180px" : "240px",
+          marginBottom: isMobile ? "30px" : "40px",
         }}
       >
         <svg
-          width="200"
-          height="200"
+          width={isSmallMobile ? "150" : isMobile ? "180" : "240"}
+          height={isSmallMobile ? "150" : isMobile ? "180" : "240"}
           viewBox="0 0 58 58"
           style={{
-            filter: `drop-shadow(0 0 8px ${colors.strong})`,
+            filter: `drop-shadow(0 0 ${isMobile ? "6px" : "10px"} ${colors.strong})`,
           }}
         >
           <path
@@ -96,8 +98,9 @@ export function LoadingScreen({ onComplete, isDataLoaded }: LoadingScreenProps) 
 
       <div
         style={{
-          width: "400px",
-          height: "4px",
+          width: isSmallMobile ? "200px" : isMobile ? "280px" : "400px",
+          maxWidth: "90%",
+          height: isMobile ? "3px" : "4px",
           backgroundColor: colors.borderLight,
           position: "relative",
           overflow: "hidden",
@@ -108,7 +111,7 @@ export function LoadingScreen({ onComplete, isDataLoaded }: LoadingScreenProps) 
             width: "30%",
             height: "100%",
             backgroundColor: colors.strong,
-            boxShadow: `0 0 4px ${colors.strong}`,
+            boxShadow: `0 0 ${isMobile ? "3px" : "4px"} ${colors.strong}`,
             animation: "slide 1.5s ease-in-out infinite",
           }}
         />

@@ -1,5 +1,7 @@
 import { Dialog } from "radix-ui";
-import { colors, fonts } from "../styles/theme";
+import { colors } from "../styles/theme";
+import { useResponsive } from "../hooks/useResponsive";
+import { getModalStyles } from "../utils/modalStyles";
 import { PlayerCell } from "./PlayerCell";
 
 interface InfoModalProps {
@@ -8,79 +10,19 @@ interface InfoModalProps {
 }
 
 export function InfoModal({ isOpen, onClose }: InfoModalProps) {
-  const overlayStyle = {
-    position: "fixed" as const,
-    inset: 0,
-    zIndex: 999,
-    backgroundColor: colors.overlay,
-    backdropFilter: "blur(4px)",
-  };
-
-  const contentStyle = {
-    position: "fixed" as const,
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    zIndex: 1000,
-    backgroundColor: colors.modalBackground,
-    padding: "24px",
-    border: `1px solid ${colors.strong}`,
-    width: "85%",
-    maxWidth: "512px",
-    maxHeight: "90vh",
-    overflowY: "auto" as const,
-    boxSizing: "border-box" as const,
-  };
-
-  const closeButtonStyle = {
-    color: colors.textGray,
-    fontSize: "34px",
-    fontWeight: "bold" as const,
-    display: "block",
-    position: "absolute" as const,
-    top: "15px",
-    right: "15px",
-    background: "none",
-    border: "none",
-    padding: 0,
-    cursor: "pointer",
-    lineHeight: 1,
-  };
-
-  const headerStyle = {
-    borderBottom: `1px solid ${colors.strong}`,
-    textAlign: "center" as const,
-    paddingBottom: "16px",
-    marginBottom: "20px",
-  };
-
-  const headerTextStyle = {
-    fontFamily: fonts.headline,
-    fontSize: "28px",
-    fontWeight: 700,
-    color: colors.text,
-    margin: 0,
-    letterSpacing: "2px",
-    textTransform: "uppercase" as const,
-  };
-
-  const modalTextStyle = {
-    fontFamily: fonts.main,
-    fontSize: "14px",
-    color: colors.text,
-    lineHeight: 1.6,
-  };
+  const { isMobile } = useResponsive();
+  const styles = getModalStyles(isMobile);
 
   const descriptionStyle = {
     textAlign: "center" as const,
-    marginBottom: "20px",
-    fontSize: "15px",
+    marginBottom: isMobile ? "16px" : "20px",
+    fontSize: isMobile ? "14px" : "15px",
   };
 
   const exampleTitleStyle = {
     textAlign: "center" as const,
-    marginBottom: "16px",
-    fontSize: "14px",
+    marginBottom: isMobile ? "12px" : "16px",
+    fontSize: isMobile ? "13px" : "14px",
   };
 
   const sampleContainerStyle = {
@@ -95,13 +37,13 @@ export function InfoModal({ isOpen, onClose }: InfoModalProps) {
   };
 
   const explanationItemStyle = {
-    marginBottom: "16px",
-    paddingLeft: "12px",
+    marginBottom: isMobile ? "12px" : "16px",
+    paddingLeft: isMobile ? "8px" : "12px",
     borderLeft: `2px solid ${colors.strong}`,
   };
 
   const explanationTextStyle = {
-    fontSize: "13px",
+    fontSize: isMobile ? "12px" : "13px",
     lineHeight: 1.6,
     color: colors.textGray,
   };
@@ -109,10 +51,10 @@ export function InfoModal({ isOpen, onClose }: InfoModalProps) {
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <Dialog.Portal>
-        <Dialog.Overlay style={overlayStyle} />
-        <Dialog.Content style={contentStyle}>
+        <Dialog.Overlay style={styles.overlay} />
+        <Dialog.Content style={styles.content}>
           <Dialog.Close
-            style={closeButtonStyle}
+            style={styles.closeButton}
             aria-label="Close"
             onMouseEnter={(e) => (e.currentTarget.style.color = colors.text)}
             onMouseLeave={(e) => (e.currentTarget.style.color = colors.textGray)}
@@ -120,9 +62,9 @@ export function InfoModal({ isOpen, onClose }: InfoModalProps) {
             &times;
           </Dialog.Close>
 
-          <div style={modalTextStyle}>
-            <div style={headerStyle}>
-              <Dialog.Title style={headerTextStyle}>HOW TO PLAY</Dialog.Title>
+          <div style={{ ...styles.modalText, lineHeight: 1.6 }}>
+            <div style={styles.header}>
+              <Dialog.Title style={styles.headerText}>HOW TO PLAY</Dialog.Title>
             </div>
 
             <Dialog.Description style={descriptionStyle}>
