@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "preact/hooks";
 import { colors, fonts } from "../styles/theme";
 import type { PlayerIds } from "../types";
 import { search, type SearchResult } from "../utils/search";
+import { getPlayerIdByName } from "../utils/typeGuards";
 import { Autocomplete } from "./Autocomplete";
 
 interface PlayerInputProps {
@@ -22,10 +23,6 @@ export function PlayerInput({
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const getKeyByValue = (value: string): string | undefined => {
-    return Object.keys(playerIds).find((key) => playerIds[key] === value);
-  };
-
   const handleInput = (e: Event) => {
     const target = e.target as HTMLInputElement;
     const value = target.value;
@@ -44,9 +41,9 @@ export function PlayerInput({
   };
 
   const handleSelect = (name: string) => {
-    const playerId = getKeyByValue(name);
-    if (playerId) {
-      onPlayerSelect(parseInt(playerId));
+    const playerId = getPlayerIdByName(playerIds, name);
+    if (playerId !== undefined) {
+      onPlayerSelect(playerId);
       setInputValue("");
       setSuggestions([]);
       setActiveIndex(-1);

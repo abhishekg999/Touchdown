@@ -1,6 +1,7 @@
 import { colors, fonts } from "../styles/theme";
 import type { GameState, PlayerIds, PlayerTeammates } from "../types";
 import { MAXGUESSES } from "../utils/constants";
+import { getPlayerName, hasPlayedTogether } from "../utils/typeGuards";
 import { PlayerCell } from "./PlayerCell";
 import { PlayerInput } from "./PlayerInput";
 
@@ -29,7 +30,7 @@ export function GameBoard({
   const handlePlayerSelect = (playerId: number) => {
     if (currentGame.finished) return;
 
-    const isCorrect = playerTeammates[prevPlayer]?.includes(playerId);
+    const isCorrect = hasPlayedTogether(playerTeammates, prevPlayer, playerId);
     onGuess(playerId, isCorrect);
   };
 
@@ -56,9 +57,10 @@ export function GameBoard({
         }}
       >
         <span>
-          Connect <span style={{ color: colors.emphasis }}>{playerIds[startPlayer]}</span> to{" "}
-          <span style={{ color: colors.emphasis }}>{playerIds[endPlayer]}</span> through mutual
-          teammates.
+          Connect{" "}
+          <span style={{ color: colors.emphasis }}>{getPlayerName(playerIds, startPlayer)}</span> to{" "}
+          <span style={{ color: colors.emphasis }}>{getPlayerName(playerIds, endPlayer)}</span>{" "}
+          through mutual teammates.
         </span>
       </div>
       <div
@@ -72,13 +74,13 @@ export function GameBoard({
         }}
       >
         <div>
-          <PlayerCell playerName={playerIds[startPlayer]} />
+          <PlayerCell playerName={getPlayerName(playerIds, startPlayer)} />
         </div>
         <div>
           {currentGame.guesses.map(([playerId, isCorrect], index) => (
             <PlayerCell
               key={index}
-              playerName={playerIds[playerId]}
+              playerName={getPlayerName(playerIds, playerId)}
               variant={isCorrect ? "correct" : "wrong"}
             />
           ))}
@@ -92,7 +94,7 @@ export function GameBoard({
           />
         )}
         <div>
-          <PlayerCell playerName={playerIds[endPlayer]} />
+          <PlayerCell playerName={getPlayerName(playerIds, endPlayer)} />
         </div>
       </div>
       <div

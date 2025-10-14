@@ -1,13 +1,13 @@
 export interface PlayerIds {
-  [key: string]: string;
+  [key: number]: string;
 }
 
 export interface PlayerTeammates {
-  [key: string]: number[];
+  [key: number]: number[];
 }
 
 export interface PlayerDefaultDates {
-  [key: string]: [number, number];
+  [key: string]: [number, number] | undefined;
 }
 
 export interface GameState {

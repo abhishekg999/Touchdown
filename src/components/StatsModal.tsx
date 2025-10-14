@@ -357,7 +357,8 @@ export function StatsModal({
             </div>
 
             <Dialog.Description style={descriptionStyle}>
-              Track your game progress and performance
+              View your game statistics! If this looks off, make sure you are using the same browser
+              when playing.
             </Dialog.Description>
 
             {currentGame.finished && (shoPath || posPath) && (
