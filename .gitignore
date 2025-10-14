@@ -1,2 +1,5 @@
-#ignore python testing
-*.py
+node_modules/
+dist/
+*.log
+.DS_Store
+bun.lockb

@@ -1,0 +1,23 @@
+{
+  "name": "touchdown",
+  "version": "2.0.0",
+  "type": "module",
+  "description": "Connect NFL players by their mutual teammates",
+  "scripts": {
+    "dev": "bun --hot ./src/index.html",
+    "build": "bun run lint && bun run build.ts",
+    "start": "bun run serve.ts",
+    "lint": "tsc --noEmit",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "preact": "^10.19.3",
+    "radix-ui": "^1.4.3",
+    "react": "npm:@preact/compat",
+    "react-dom": "npm:@preact/compat"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2",
+    "typescript": "^5.3.3"
+  }
+}
