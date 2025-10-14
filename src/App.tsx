@@ -93,13 +93,10 @@ export function App() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const { playerIds, playerTeammates, playerDefaultDates } = await import("./data");
+        const { loadGameData } = await import("./data/loader");
+        const data = await loadGameData();
 
-        setGameData({
-          playerIds,
-          playerTeammates,
-          playerDefaultDates,
-        });
+        setGameData(data);
         setIsDataLoaded(true);
       } catch (error) {
         console.error("Error loading game data:", error);

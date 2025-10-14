@@ -5,7 +5,8 @@
   "description": "Connect NFL players by their mutual teammates",
   "scripts": {
     "dev": "bun --hot ./src/index.html",
-    "build": "bun build ./src/index.html --outdir=dist --sourcemap=external --target=browser --minify",
+    "build": "bun run build.ts",
+    "start": "bun run serve.ts",
     "lint": "tsc --noEmit",
     "format": "prettier --write ."
   },
