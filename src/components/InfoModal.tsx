@@ -87,38 +87,22 @@ export function InfoModal({ isOpen, onClose }: InfoModalProps) {
     marginBottom: "20px",
   };
 
-  const explanationContainerStyle = {
-    backgroundColor: "rgba(255, 122, 74, 0.05)",
-    padding: "16px",
-    border: `1px solid ${colors.strong}`,
-    marginTop: "16px",
-  };
-
-  const explanationTitleStyle = {
-    fontFamily: fonts.headline,
-    fontSize: "14px",
-    fontWeight: 700,
-    marginBottom: "12px",
-    color: colors.strong,
-    textTransform: "uppercase" as const,
-    letterSpacing: "1px",
+  const dividerStyle = {
+    height: "1px",
+    background: `linear-gradient(to right, transparent, ${colors.strong}, transparent)`,
+    marginTop: "24px",
+    marginBottom: "20px",
   };
 
   const explanationItemStyle = {
-    marginBottom: "12px",
+    marginBottom: "16px",
     paddingLeft: "12px",
-    borderLeft: `3px solid ${colors.borderLight}`,
-  };
-
-  const guessLabelStyle = {
-    fontWeight: 700,
-    marginBottom: "4px",
-    color: colors.emphasis,
+    borderLeft: `2px solid ${colors.strong}`,
   };
 
   const explanationTextStyle = {
     fontSize: "13px",
-    lineHeight: 1.5,
+    lineHeight: 1.6,
     color: colors.textGray,
   };
 
@@ -168,34 +152,22 @@ export function InfoModal({ isOpen, onClose }: InfoModalProps) {
               </div>
             </div>
 
-            <div style={explanationContainerStyle}>
-              <div style={explanationTitleStyle}>Explanation</div>
+            <div style={dividerStyle} />
 
+            <div>
               <div style={explanationItemStyle}>
-                <div style={guessLabelStyle}>
-                  Guess 1: <span style={{ color: colors.correct }}>Brandin Cooks</span>
-                </div>
-                <div style={explanationTextStyle}>
-                  Brandin Cooks played with Drew Brees, however, he's never played with Rodgers.
-                </div>
+                <strong style={{ color: colors.correct }}>Brandin Cooks</strong> played with Drew
+                Brees, but never played with Rodgers.
               </div>
 
               <div style={explanationItemStyle}>
-                <div style={guessLabelStyle}>
-                  Guess 2: <span style={{ color: colors.wrong }}>Patrick Mahomes</span>
-                </div>
-                <div style={explanationTextStyle}>
-                  Patrick Mahomes never played with Brandin Cooks.
-                </div>
+                <strong style={{ color: colors.wrong }}>Patrick Mahomes</strong> never played with
+                Brandin Cooks.
               </div>
 
               <div style={{ ...explanationItemStyle, marginBottom: 0 }}>
-                <div style={guessLabelStyle}>
-                  Guess 3: <span style={{ color: colors.correct }}>Randall Cobb</span>
-                </div>
-                <div style={explanationTextStyle}>
-                  Randall Cobb played with Brandin Cooks, and also played with Rodgers. ✓
-                </div>
+                <strong style={{ color: colors.correct }}>Randall Cobb</strong> played with Brandin
+                Cooks, and also played with Rodgers. ✓
               </div>
             </div>
           </div>
