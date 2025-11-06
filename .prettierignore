@@ -4,5 +4,7 @@ old
 *.log
 bun.lockb
 *.json
-src/data/
 
+src/data/
+raw-data/
+scripts/

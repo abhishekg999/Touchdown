@@ -3,3 +3,7 @@ dist/
 *.log
 .DS_Store
 bun.lockb
+
+.venv
+raw-data/
+.mypy_cache/
