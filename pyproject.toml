@@ -1,0 +1,11 @@
+[project]
+name = "touchdown"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "nflreadpy>=0.1.4",
+    "pandas>=2.3.3",
+    "pyarrow>=22.0.0",
+]
