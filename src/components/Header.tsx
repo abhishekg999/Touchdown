@@ -64,7 +64,7 @@ export function Header({ onInfoClick, onStatsClick }: HeaderProps) {
         </svg>
       </div>
       <div style={{ position: "relative", textAlign: "center", width: "33%", flex: "1" }}>
-        <span
+        <h1
           style={{
             margin: 0,
             position: "absolute",
@@ -80,7 +80,7 @@ export function Header({ onInfoClick, onStatsClick }: HeaderProps) {
           }}
         >
           Touchdown
-        </span>
+        </h1>
       </div>
       <div
         style={{
