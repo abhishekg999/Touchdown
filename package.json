@@ -8,6 +8,7 @@
     "build": "bun run lint && bun run build.ts",
     "start": "bun run serve.ts",
     "lint": "tsc --noEmit",
+    "test": "bun test",
     "format": "prettier --write .",
     "generate:all": "python3 scripts/generate-raw.py && bun run scripts/generate-ids.ts && bun run scripts/generate-mappings.ts && bun run scripts/generate-popular-players.ts",
     "generate:raw": "python3 scripts/generate-raw.py",
